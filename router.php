@@ -18,6 +18,7 @@ $params = explode('/', $action);
 switch ($params[0]) {
     case 'home':
         $controller = new BookController();
+        $controller->showHome();
         break;
     default:
         header("HTTP/1.0 404 Not Found");
