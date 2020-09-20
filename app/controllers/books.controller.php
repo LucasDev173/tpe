@@ -7,8 +7,10 @@ class BookController {
     private $view;
 
     function __construct(){
-        $view = new BooksView();
-        $view->showHome();
+        $this->view = new BooksView();
     }
     
+    function showHome(){
+        $this->view->showHome();
+    }
 }
