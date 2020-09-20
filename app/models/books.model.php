@@ -1,6 +1,6 @@
 <?php
 
-class BookModel {
+class BooksModel {
 
     private $db;
 
