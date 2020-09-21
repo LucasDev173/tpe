@@ -14,6 +14,9 @@ class BookController {
     }
     
     function showHome(){
-        $this->view->showHome();
+        //Tomo todos los libros de la DB
+        $libros = $this->model->getAll();
+        //Actualizo la vista
+        $this->view->showHome($libros);
     }
 }

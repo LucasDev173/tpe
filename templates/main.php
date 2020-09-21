@@ -1,11 +1,6 @@
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12 well">area 1</div>
-    </div>
-</div>
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12 well">area 2</div>
-    </div>
+<div class="container is-fluid">
+  <div class="notification">
+    This container is <strong>fluid</strong>: it will have a 20px gap on either side, on any viewport size.
+  </div>
 </div>
