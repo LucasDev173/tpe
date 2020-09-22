@@ -19,4 +19,9 @@ class BookController {
         //Actualizo la vista
         $this->view->showHome($libros);
     }
+
+    function showSearch(){
+        $libros = $this->model->getAll();
+        $this->view->showSearch($libros);
+    }
 }

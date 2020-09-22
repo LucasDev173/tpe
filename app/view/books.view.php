@@ -21,4 +21,11 @@ class BooksView{
         echo "</div>";
         include 'templates/footer.php';
     }
+
+    function showSearch(){
+        include 'templates/header.php';
+        include 'templates/navbar.php';
+        include 'templates/search.php';
+        include 'templates/footer.php';
+    }
 }
