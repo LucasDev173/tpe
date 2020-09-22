@@ -22,8 +22,8 @@ class BooksModel {
      */
     function getAll() {
 
-        // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
-        $query = $this->db->prepare('SELECT * FROM libro');
+        // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con JOIN)
+        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria ON libro.id_categoria = categoria.id');
         $query->execute();
 
         // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
