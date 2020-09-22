@@ -25,4 +25,9 @@ class BookController {
         $libros = $this->model->getAll();
         $this->view->showSearch($libros);
     }
+
+
+    function Insert_libro() {
+        //TO DO. 
+    }
 }

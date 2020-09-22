@@ -27,19 +27,19 @@ class BooksModel {
         $query->execute();
 
         // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
-        $tasks = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de libros
+        $libros = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de libros
 
-        return $tasks;
+        return $libros;
     }
 
     /**
-     * Inserta el libro en la base de datos
+     * Inserta el libro en la base de datos. FALTA CATEGORIA
      */
-    function insert($titulo, $autor, $precio, $id_categoria) {
+    function insert($titulo, $autor, $precio) {
 
         // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
-        $query = $this->db->prepare('INSERT INTO libro (titulo, autor, precio, id_categoria) VALUES (?,?,?,?)');
-        $query->execute([$titulo, $autor, $precio, $id_categoria]);
+        $query = $this->db->prepare('INSERT INTO libro (titulo, autor, precio) VALUES (?,?,?)');
+        $query->execute([$titulo, $autor, $precio]);
 
         // 3. Obtengo y devuelo el ID de la tarea nueva
         return $this->db->lastInsertId();
