@@ -1,5 +1,8 @@
 
-
+    <footer class="p-2 mb-0 bg-dark text-white text-center">
+        <p class="p-0 m-0">LM Bookstore 2020</p>
+        <p class="p-m m-0">Creado por Matias Shedden y Lucas Guerrero</p>
+    </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

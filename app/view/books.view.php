@@ -7,6 +7,7 @@ class BooksView{
         include 'templates/navbar.php';
         include 'templates/main.php';
 
+        echo "<div class='container mb-3'>";
         echo "<ul class='list-group mt-5'>";
         foreach($libros as $libro) {
             echo "<li class='list-group-item'>
@@ -17,7 +18,7 @@ class BooksView{
                 </li>";
         }
         echo "</ul>";
-
+        echo "</div>";
         include 'templates/footer.php';
     }
 }
