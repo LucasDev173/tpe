@@ -35,11 +35,11 @@ class BooksModel {
     /**
      * Inserta el libro en la base de datos. FALTA CATEGORIA
      */
-    function insert($titulo, $autor, $precio) {
-
+    function insert($titulo, $autor, $precio, $id_cat) {
+        
         // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
-        $query = $this->db->prepare('INSERT INTO libro (titulo, autor, precio) VALUES (?,?,?)');
-        $query->execute([$titulo, $autor, $precio]);
+        $query = $this->db->prepare('INSERT INTO libro (titulo, autor, precio, id_categoria) VALUES (?,?,?,?)');
+        $query->execute([$titulo, $autor, $precio, $id_cat]);
 
         // 3. Obtengo y devuelo el ID de la tarea nueva
         return $this->db->lastInsertId();

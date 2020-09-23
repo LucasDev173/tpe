@@ -28,4 +28,8 @@ class BooksView{
         include 'templates/search.php';
         include 'templates/footer.php';
     }
+
+    function ShowError($mensaje) {
+        echo "<H1>" . $mensaje . "</H1>>";
+    }
 }
