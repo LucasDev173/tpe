@@ -14,7 +14,7 @@ class BooksView{
                     TITULO: $libro->titulo <br> 
                     AUTOR: $libro->autor <br>  
                     PRECIO: $libro->precio <br>  
-                    CATEGORIA: $libro->id_categoria
+                    CATEGORIA: $libro->nombre
                 </li>";
         }
         echo "</ul>";
