@@ -25,7 +25,7 @@ class BooksView{
     function showSearch(){
         include 'templates/header.php';
         include 'templates/navbar.php';
-        include 'templates/search.php';
+        include 'templates/options.php';
         include 'templates/footer.php';
     }
 

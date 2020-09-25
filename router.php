@@ -20,7 +20,7 @@ switch ($params[0]) {
         $controller = new BookController();
         $controller->showHome();
         break;
-    case 'search':
+    case 'options':
         $controller = new BookController();
         $controller->showSearch();
         break;
