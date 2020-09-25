@@ -33,7 +33,7 @@ class BooksModel {
     }
 
     /**
-     * Inserta el libro en la base de datos. FALTA CATEGORIA
+     * Inserta el libro en la base de datos.
      */
     function insert($titulo, $autor, $precio, $id_cat) {
         
@@ -49,5 +49,22 @@ class BooksModel {
   
         $query = $this->db->prepare('DELETE FROM libro WHERE id = ?');
         $query->execute([$id]);
-  }
+    }
+
+    /**
+     * Devuelve todos los libros de la base de datos con la categoria solicitada
+     */
+    function getCategoria($id_categoria) {
+        
+        // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con INNER JOIN)
+        // Utilizo intval para parsear el valor.
+        $query = $this->db->prepare('SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.id WHERE id_categoria = ?');
+        $query->execute([$id_categoria["select"]]);
+        
+        // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
+        $libros = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de libros
+        
+        return $libros;
+
+    }
 }

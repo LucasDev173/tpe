@@ -43,4 +43,10 @@ class BookController {
         // redirigimos al listado
         header("Location: " . BASE_URL); 
     }
+
+    function filtrar_categoria($id_categoria) {
+        $libros = $this->model->getCategoria($id_categoria);
+        
+        $this->view->showHome($libros);
+    }
 }

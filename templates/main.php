@@ -13,7 +13,18 @@
       <img src="img/rsz_bookart.png" alt="logo" class="img-fluid">
     </div>
   </div>
-  <h2 class="mt-3">Catalogo:</h2>
+  <form action="filtrar" method="post">
+    <label for="select">Seleccione categoria</label>
+      <select name="select">
+            <option value="1">policial</option>
+            <option value="2">suspenso</option>
+            <option value="3">fantasia</option>
+        </select>
+      <button type="submit">Filtrar</button>
+  </form>
+    <h2 class="mt-3">Catalogo:</h2>
+  
+  
 </div>
 
 
