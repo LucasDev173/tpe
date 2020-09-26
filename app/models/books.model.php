@@ -67,4 +67,23 @@ class BooksModel {
         return $libros;
 
     }
+
+    function getResults($pattern){
+        //libros: `id`, `titulo`, `autor`, `precio`, `id_categoria` 
+        //
+        //convierte a los resultados en minuscula, para compararlo
+        //mejor contra los elementos de la base de datos
+        $pattern = strtolower($pattern);
+        $query = $this->db->prepare(
+            "SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.id
+            WHERE
+                LOWER(libro.titulo) LIKE '%$pattern%' OR
+                LOWER(libro.autor) LIKE '%$pattern%' OR
+                LOWER(libro.id_categoria) LIKE '%$pattern%'"
+        );
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
+        
+        return $results;
+    }
 }
