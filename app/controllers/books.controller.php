@@ -21,9 +21,9 @@ class BookController {
         $this->view->showHome($libros);
     }
 
-    function showSearch(){
+    function showOptions(){
         $libros = $this->model->getAll();
-        $this->view->showSearch($libros);
+        $this->view->showOptions($libros);
     }
 
 
@@ -48,5 +48,11 @@ class BookController {
         $libros = $this->model->getCategoria($id_categoria);
         
         $this->view->showHome($libros);
+    }
+
+    function showSearch(){
+        $pattern = $_POST["pattern"];
+        $results = $this->model->getResults($pattern); 
+        $this->view->showResults($results);
     }
 }

@@ -22,11 +22,35 @@ class BooksView{
         include 'templates/footer.php';
     }
 
-    function showSearch(){
+    function showOptions(){
         include 'templates/header.php';
         include 'templates/navbar.php';
-        include 'templates/search.php';
+        include 'templates/options.php';
         include 'templates/footer.php';
+    }
+
+    function showResults($results){
+        include 'templates/header.php';
+        include 'templates/navbar.php';
+        if (empty($results)) {
+            echo ' <p class="lead m-5">No se encontro ningun resultado.</p> ';
+            include 'templates/footer.php';
+        }
+        else {
+            echo "<div class='container mb-3'>";
+            echo "<ul class='list-group mt-5'>";
+            foreach($results as $results) {
+                echo "<li class='list-group-item'>
+                        TITULO: $results->titulo <br> 
+                        AUTOR: $results->autor <br>  
+                        PRECIO: $results->precio <br>  
+                        CATEGORIA: $results->nombre
+                    </li>";
+            }
+            echo "</ul>";
+            echo "</div>";
+            include 'templates/footer.php';
+        }
     }
 
     function ShowError($mensaje) {

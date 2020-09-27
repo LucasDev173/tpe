@@ -10,8 +10,16 @@
         <a class="nav-link" href="home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="search">Acciones en BD</a>
+        <a class="nav-link" href="options">Acciones en BD</a>
       </li>
     </ul>
+    <!--empieza la forma-->
+    <form class="form-inline my-2 my-lg-0" action="buscar" method="POST">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search" 
+      name="pattern" required>
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">🔍</button>
+    </form>
+    <!--termina la forma-->
+    <button type="button" class="btn btn-outline-light ml-2">Iniciar sesion</button>
   </div>
 </nav>

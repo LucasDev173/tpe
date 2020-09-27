@@ -20,9 +20,9 @@ switch ($params[0]) {
         $controller = new BookController();
         $controller->showHome();
         break;
-    case 'search':
+    case 'options':
         $controller = new BookController();
-        $controller->showSearch();
+        $controller->showOptions();
         break;
     case 'insertar':
         $controller = new BookController();
@@ -31,6 +31,10 @@ switch ($params[0]) {
     case 'filtrar':
         $controller = new BookController();
         $controller->filtrar_categoria($_POST);
+        break;
+    case 'buscar':
+        $controller = new BookController();
+        $controller->showSearch();
         break;
     default:
         header("HTTP/1.0 404 Not Found");
