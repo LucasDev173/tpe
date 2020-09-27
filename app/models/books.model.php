@@ -57,7 +57,6 @@ class BooksModel {
     function getCategoria($id_categoria) {
         
         // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con INNER JOIN)
-        // Utilizo intval para parsear el valor.
         $query = $this->db->prepare('SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.id WHERE id_categoria = ?');
         $query->execute([$id_categoria["select"]]);
         
