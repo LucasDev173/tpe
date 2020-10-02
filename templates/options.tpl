@@ -1,3 +1,6 @@
+{include 'templates/header.tpl'}
+{include 'templates/navbar.tpl'}
+
 <div>
     <p>Menu de opciones</p>
     <form name="enviar" action="insertar" method="POST">
@@ -12,3 +15,4 @@
     </form>
 
 </div>
+{include 'templates/footer.tpl'}
