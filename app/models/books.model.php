@@ -44,14 +44,17 @@ class BooksModel {
         // 3. Obtengo y devuelo el ID de la tarea nueva
         return $this->db->lastInsertId();
     }
- 
+    
+    /*
+     * Remueve un item de la BD por su $id
+     */
     function remove($id) {  
   
         $query = $this->db->prepare('DELETE FROM libro WHERE id = ?');
         $query->execute([$id]);
     }
 
-    /**
+    /*
      * Devuelve todos los libros de la base de datos con la categoria solicitada
      */
     function getCategoria($id_categoria) {
@@ -67,11 +70,11 @@ class BooksModel {
 
     }
 
+    /*
+     * Busca en libros x `id`, `titulo`, `autor`, `precio`, `id_categoria` 
+     * convierte a los resultados en minuscula para comparar en la base de datos
+     */
     function getResults($pattern){
-        //libros: `id`, `titulo`, `autor`, `precio`, `id_categoria` 
-        //
-        //convierte a los resultados en minuscula, para compararlo
-        //mejor contra los elementos de la base de datos
         $pattern = strtolower($pattern);
         $query = $this->db->prepare(
             "SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.id

@@ -39,15 +39,16 @@ class BooksView{
         else {
             echo "<div class='container mb-3'>";
             echo "<ul class='list-group mt-5'>";
-            foreach($results as $results) {
+            foreach($results as $result) {
                 echo "<li class='list-group-item'>
-                        TITULO: $results->titulo <br> 
-                        AUTOR: $results->autor <br>  
-                        PRECIO: $results->precio <br>  
-                        CATEGORIA: $results->nombre
+                        TITULO: $result->titulo <br> 
+                        AUTOR: $result->autor <br>  
+                        PRECIO: $result->precio <br>  
+                        CATEGORIA: $result->nombre
                     </li>";
             }
             echo "</ul>";
+            echo "<a class='btn btn-danger btn-sm' href='eliminar/".$results[0]->id."'>ELIMINAR</a>";
             echo "</div>";
             include 'templates/footer.php';
         }

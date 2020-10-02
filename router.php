@@ -36,6 +36,11 @@ switch ($params[0]) {
         $controller = new BookController();
         $controller->showSearch();
         break;
+    case 'eliminar':
+            $controller = new BookController();
+            $id = $params[1];
+            $controller->eliminar_libro($id);
+            break;
     default:
         header("HTTP/1.0 404 Not Found");
         echo('404 Page not found');
