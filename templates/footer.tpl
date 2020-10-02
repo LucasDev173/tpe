@@ -1,4 +1,3 @@
-
     <footer class="p-2 mb-0 bg-dark text-white text-center">
         <p class="p-0 m-0">LM Bookstore 2020</p>
         <p class="p-m m-0">Creado por Matias Shedden y Lucas Guerrero</p>
