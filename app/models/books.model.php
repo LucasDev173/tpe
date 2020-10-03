@@ -23,7 +23,7 @@ class BooksModel {
     function getAll() {
 
         // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con JOIN)
-        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria ON libro.id_categoria = categoria.id');
+        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria ON libro.id_categoria = categoria.ide');
         $query->execute();
 
         // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
@@ -60,14 +60,26 @@ class BooksModel {
     function getCategoria($id_categoria) {
         
         // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con INNER JOIN)
-        $query = $this->db->prepare('SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.id WHERE id_categoria = ?');
+        $query = $this->db->prepare('SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.ide WHERE id_categoria = ?');
         $query->execute([$id_categoria["select"]]);
         
         // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
         $libros = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de libros
         
         return $libros;
+    }
 
+    /*
+     * Devuelve el libro seleccionado por ID de la base de datos
+     */
+    function getLibro($id) {
+        
+        // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con INNER JOIN)
+        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria WHERE id = ?');
+        $query->execute([$id]);
+        // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
+        $libro = $query->fetch(PDO::FETCH_OBJ); // El libro seleccionado
+        return $libro;
     }
 
     /*
@@ -77,7 +89,7 @@ class BooksModel {
     function getResults($pattern){
         $pattern = strtolower($pattern);
         $query = $this->db->prepare(
-            "SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.id
+            "SELECT * FROM libro INNER JOIN categoria ON libro.id_categoria = categoria.ide
             WHERE
                 LOWER(libro.titulo) LIKE '%$pattern%' OR
                 LOWER(libro.autor) LIKE '%$pattern%' OR

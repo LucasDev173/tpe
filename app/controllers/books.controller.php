@@ -61,4 +61,10 @@ class BookController {
         //$this->view->showOptions();
         header("Location: " . BASE_URL);
     }
-}
+
+    function ver_libro($id)     {
+        $libro = $this->model->getLibro($id);
+        $this->view->showItem($libro);
+        
+    }
+}  

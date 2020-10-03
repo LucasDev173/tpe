@@ -2,7 +2,7 @@
 {include 'templates/navbar.tpl'}
 
 <div>
-    <p>Menu de opciones</p>
+    <p>Menu de Administracion</p>
     <form name="enviar" action="insertar" method="POST">
         
         
@@ -11,7 +11,7 @@
         <input type="text" name="precio" placeholder="precio">
         <input type="number" name="id_categoria" placeholder="categoria">
         
-        <button type="submit" name="enviar">Insertar</button>
+        <button class='btn btn-success btn-sm' type="submit" name="enviar">Insertar</button>
     </form>
 
 </div>

@@ -26,4 +26,10 @@ class BooksView{
         $smarty->assign('mensaje', $mensaje);
         $smarty->display('templates/showError.tpl');
     }
+
+    function ShowItem($libro) {
+        $smarty = new Smarty();
+        $smarty->assign('libro', $libro);
+        $smarty->display('templates/bookList.tpl');
+    }
 }
