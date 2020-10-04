@@ -15,6 +15,7 @@
             </li>
     {/foreach}
     </ul>
+    <a href="{BASE_URL}home#contenedor">volver</a>
     </div>
 {/if}
 {include 'templates/footer.tpl'}
