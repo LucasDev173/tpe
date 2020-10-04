@@ -20,11 +20,6 @@ class BookController {
         $this->view->showHome($libros);
     }
 
-    function showOptions(){
-        $libros = $this->model->getAll();
-        $this->view->showOptions($libros);
-    }
-
     //Muestra los resultados de la barra de busqueda
     function showSearch(){
         $pattern = $_POST["pattern"];
@@ -59,12 +54,10 @@ class BookController {
     function eliminar_libro($id)     {
         $this->model->remove($id);
         //$this->view->showOptions();
-        header("Location: " . BASE_URL);
     }
 
     function ver_libro($id)     {
         $libro = $this->model->getLibro($id);
-        $this->view->showItem($libro);
-        
+        $this->view->showItem($libro);  
     }
 }  

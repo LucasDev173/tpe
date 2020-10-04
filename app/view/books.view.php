@@ -10,7 +10,7 @@ class BooksView{
         $smarty->display('templates/booksList.tpl');
     }
 
-    function showOptions(){
+    function showMenuAdmin(){
         $smarty = new Smarty();
         $smarty->display('templates/options.tpl');
     }

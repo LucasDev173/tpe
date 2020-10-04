@@ -1,5 +1,6 @@
 <?php
 include_once 'app/controllers/books.controller.php';
+include_once 'app/controllers/auth.controller.php';
 
 // defino la base url para la construccion de links con urls semánticas
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -20,9 +21,9 @@ switch ($params[0]) {
         $controller = new BookController();
         $controller->showHome();
         break;
-    case 'options':
-        $controller = new BookController();
-        $controller->showOptions();
+    case 'admin':
+        $controller = new authController();
+        $controller->showMenuAdmin();
         break;
     case 'insertar':
         $controller = new BookController();

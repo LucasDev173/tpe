@@ -13,7 +13,7 @@
                 PRECIO: {$libro->precio} <br>  
                 CATEGORIA: {$libro->nombre}
             </li>
-            <a href="{BASE_URL}home">volver</a>
+            <a href="{BASE_URL}home#contenedor">volver</a>
         </ul>
     </div>
 {/if}

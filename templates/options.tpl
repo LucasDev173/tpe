@@ -2,10 +2,8 @@
 {include 'templates/navbar.tpl'}
 
 <div>
-    <p>Menu de Administracion</p>
+    <p>Menu del Administrador</p>
     <form name="enviar" action="insertar" method="POST">
-        
-        
         <input type="text" name="titulo" placeholder="titulo">
         <input type="text" name="autor" placeholder="autor">
         <input type="text" name="precio" placeholder="precio">
