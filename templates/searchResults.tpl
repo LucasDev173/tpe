@@ -9,9 +9,7 @@
     {foreach from=$results item=result}
             <li class='list-group-item'>
                 TITULO: {$result->titulo} <br> 
-                AUTOR: {$result->autor} <br>  
-                PRECIO: {$result->precio} <br>  
-                CATEGORIA: {$result->nombre}
+                PRECIO: {$result->precio} 
             </li>
     {/foreach}
     </ul>

@@ -30,6 +30,6 @@ class BooksView{
     function ShowItem($libro) {
         $smarty = new Smarty();
         $smarty->assign('libro', $libro);
-        $smarty->display('templates/bookList.tpl');
+        $smarty->display('templates/bookDetail.tpl');
     }
 }
