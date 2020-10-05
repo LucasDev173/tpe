@@ -20,7 +20,6 @@
                 ID: {$libro->id} <br>
                 TITULO: {$libro->titulo} <br> 
                 AUTOR: {$libro->autor} <br>
-                AUTOR: {$libro->autor} <br>
                 PRECIO: {$libro->precio} <br>
                 CATEGORIA: {$libro->nombre}
                 <div>
