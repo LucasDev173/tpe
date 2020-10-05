@@ -50,11 +50,11 @@ class BookController {
         $this->view->showHome($libros);
     }
 
-    //NO FUNCIONA!!!
-    function eliminar_libro($id)     {
-        $this->model->remove($id);
-        //$this->view->showOptions();
-    }
+    
+    //function eliminar_libro($id) {
+    //    $libros = $this->model->remove($id);
+    //    $this->view->showMenuAdmin($libros);
+    //}
 
     function ver_libro($id)     {
         $libro = $this->model->getLibro($id);

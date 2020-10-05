@@ -21,7 +21,7 @@ switch ($params[0]) {
         $controller = new BookController();
         $controller->showHome();
         break;
-    case 'admin':
+    case 'MenuAdmin':
         $controller = new authController();
         $controller->showMenuAdmin();
         break;
@@ -38,7 +38,7 @@ switch ($params[0]) {
         $controller->showSearch();
         break;
     case 'eliminar':
-            $controller = new BookController();
+            $controller = new AuthController();
             $id = $params[1];
             $controller->eliminar_libro($id);
             break;

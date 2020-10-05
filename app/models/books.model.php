@@ -52,6 +52,8 @@ class BooksModel {
   
         $query = $this->db->prepare('DELETE FROM libro WHERE id = ?');
         $query->execute([$id]);
+        $libros = $this->getAll(); // arreglo de libros
+        return $libros;
     }
 
     /*

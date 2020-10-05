@@ -17,4 +17,9 @@ class AuthController {
         $libros = $this->model->getAll();
         $this->view->showMenuAdmin($libros);
     }
+
+    function eliminar_libro($id) {
+        $libros = $this->model->remove($id);
+        $this->view->showMenuAdmin($libros);
+    }
 }
