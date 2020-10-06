@@ -38,7 +38,7 @@ switch ($params[0]) {
         $controller->showSearch();
         break;
     case 'eliminar':
-            $controller = new AuthController();
+            $controller = new BookController();
             $id = $params[1];
             $controller->eliminar_libro($id);
             break;

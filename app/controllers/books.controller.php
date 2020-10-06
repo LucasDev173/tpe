@@ -50,12 +50,13 @@ class BookController {
         $this->view->showHome($libros);
     }
 
-    
-    //function eliminar_libro($id) {
-    //    $libros = $this->model->remove($id);
-    //    $this->view->showMenuAdmin($libros);
-    //}
+    //Elimino el libro con la ID seleccionada
+    function eliminar_libro($id) {
+        $libros = $this->model->remove($id);
+        $this->view->showMenuAdmin($libros);
+    }
 
+    //Ver el detalle de un libro(item) en particular
     function ver_libro($id)     {
         $libro = $this->model->getLibro($id);
         $this->view->showItem($libro);  
