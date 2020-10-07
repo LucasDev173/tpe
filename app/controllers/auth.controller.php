@@ -46,7 +46,6 @@ class AuthController {
             $this->showMenuAdmin();
         } else {
             echo "acceso denegado";
-            die;
         }
     }
 }
