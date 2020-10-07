@@ -1,37 +1,39 @@
 <?php
 
-require_once('libs\smarty\Smarty.class.php');
+require_once('libs\smarty\smarty.class.php');
 
 class BooksView{
 
+    private $smarty;
+
+    function __construct(){
+        $this->smarty = new Smarty();
+        $this->smarty->assign('title', "Libreria");
+    }
+
     function showHome($libros){
-        $smarty = new Smarty();
-        $smarty->assign('libros', $libros);
-        $smarty->display('templates/booksList.tpl');
+        $this->smarty->assign('libros', $libros);
+        $this->smarty->display('templates/booksList.tpl');
     }
 
     function showMenuAdmin($libros){
-        $smarty = new Smarty();
-        $smarty->assign('libros', $libros);
-        $smarty->display('templates/options.tpl');
+        $this->smarty->assign('libros', $libros);
+        $this->smarty->display('templates/options.tpl');
     }
 
     function showResults($results){
-        $smarty = new Smarty();
-        $smarty->assign('results', $results);
-        $smarty->display('templates/searchResults.tpl');
+        $this->smarty->assign('results', $results);
+        $this->smarty->display('templates/searchResults.tpl');
     }
 
     function ShowError($mensaje) {
-        $smarty = new Smarty();
-        $smarty->assign('mensaje', $mensaje);
-        $smarty->display('templates/showError.tpl');
+        $this->smarty->assign('mensaje', $mensaje);
+        $this->smarty->display('templates/showError.tpl');
     }
 
     function ShowItem($libro) {
-        $smarty = new Smarty();
-        $smarty->assign('libro', $libro);
-        $smarty->display('templates/bookDetail.tpl');
+        $this->smarty->assign('libro', $libro);
+        $this->smarty->display('templates/bookDetail.tpl');
     }
 
     function ShowItemModify($libro) {
