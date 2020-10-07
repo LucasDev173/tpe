@@ -33,4 +33,10 @@ class BooksView{
         $smarty->assign('libro', $libro);
         $smarty->display('templates/bookDetail.tpl');
     }
+
+    function ShowItemModify($libro) {
+        $smarty = new Smarty();
+        $smarty->assign('libro', $libro);
+        $smarty->display('templates/bookModify.tpl');
+    }
 }

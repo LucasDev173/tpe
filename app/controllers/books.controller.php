@@ -27,7 +27,7 @@ class BookController {
         $this->view->showResults($results);
     }
 
-    // Inserta un libro con los datos enviados
+    // Inserta un libro con los datos enviados. SOLO ADMIN
     function insert_libro() {
         $titulo = $_POST["titulo"];
         $autor = $_POST["autor"];
@@ -50,7 +50,7 @@ class BookController {
         $this->view->showHome($libros);
     }
 
-    //Elimino el libro con la ID seleccionada
+    //Elimino el libro con la ID seleccionada. SOLO ADMIN
     function eliminar_libro($id) {
         $libros = $this->model->remove($id);
         $this->view->showMenuAdmin($libros);
@@ -60,5 +60,17 @@ class BookController {
     function ver_libro($id)     {
         $libro = $this->model->getLibro($id);
         $this->view->showItem($libro);  
+    }
+
+    //Modificar los datos de un libro(item) en particular. SOLO ADMIN
+    function modif_libro($id)     {
+        $libro = $this->model->getLibro($id);
+        $this->view->showItemModify($libro);
+    }
+
+    //Actualiza la base de datos del ID enviado. SOLO ADMIN
+    function modif_final($libro) {
+        $libro = $this->model->updateLibro($id);
+        $this->view->showMenuAdmin($libros);
     }
 }  
