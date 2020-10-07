@@ -14,3 +14,9 @@ footer {
 .content {
     flex: 1 0 auto;
 }
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
