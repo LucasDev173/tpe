@@ -63,14 +63,14 @@ class BookController {
     }
 
     //Modificar los datos de un libro(item) en particular. SOLO ADMIN
-    function modif_libro($id)     {
+    function modif_libro($id) {
         $libro = $this->model->getLibro($id);
         $this->view->showItemModify($libro);
     }
 
     //Actualiza la base de datos del ID enviado. SOLO ADMIN
     function modif_final($libro) {
-        $libro = $this->model->updateLibro($id);
+        $libros = $this->model->updateLibro($libro);
         $this->view->showMenuAdmin($libros);
     }
 }  

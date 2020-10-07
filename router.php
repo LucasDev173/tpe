@@ -54,8 +54,7 @@ switch ($params[0]) {
         break;
     case 'modif':
         $controller = new BookController();
-        $id = $params[1];
-        $controller->modif_final($id);
+        $controller->modif_final($_POST);
         break;
     default:
         header("HTTP/1.0 404 Not Found");
