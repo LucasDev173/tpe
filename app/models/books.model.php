@@ -104,18 +104,17 @@ class BooksModel {
     }
 
     /*
-     * Actualizo el libro seleccionado por ID de la base de datos
+     * Actualizo el libro seleccionado por ID de la base de datos NO ANDA
      */
     function updateLibro($libro) {
-        //var_dump($libro); die;
         $id = $libro["id"];
         $titulo = $libro["titulo"];
         $autor = $libro["autor"];
         $precio = $libro["precio"];
-        //$categoria = $libro["nombre"];
-        $query = $this->db->prepare('UPDATE libro JOIN categoria SET titulo = ? WHERE id ='.$id);
-        $query->execute([$titulo]);
+        //$categoria = $libro["categoria"];
+        $query = $this->db->prepare('UPDATE libro JOIN categoria SET titulo = ?, autor = ?, precio = ? WHERE id = ?');
+        $query->execute([$titulo, $autor, $precio, $id]);
         $libros = $this->getAll(); // arreglo de libros
         return $libros;
-    }
+    } 
 }

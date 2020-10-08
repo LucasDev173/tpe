@@ -69,7 +69,9 @@ class BookController {
     }
 
     //Actualiza la base de datos del ID enviado. SOLO ADMIN
-    function modif_final($libro) {
+    function modif_final() {
+        $libro = array("id"=>$_POST["id"], "titulo"=>$_POST["titulo"], "autor"=>$_POST["autor"], "precio"=>$_POST["precio"], 
+                       "categoria"=>$_POST["categoria"]);
         $libros = $this->model->updateLibro($libro);
         $this->view->showMenuAdmin($libros);
     }

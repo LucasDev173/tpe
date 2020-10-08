@@ -7,6 +7,7 @@
                 <img class='mt-5 rounded mx-auto d-block img-thumbnail' src="img/portada-generica.png" width="300" height="150">
                 <div class="mt-3 row">
                     <form action="modif" method="POST">
+                        <input type="text" name="id" value="{$libro->id}" readonly>
                         <input type="text" name="titulo" value="{$libro->titulo}">
                         <input type="text" name="autor" value="{$libro->autor}">
                         <input type="text" name="precio" value="{$libro->precio}">

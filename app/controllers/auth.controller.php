@@ -41,7 +41,7 @@ class AuthController {
         $password = $_POST['password'];
         
         $user = $this->model->getByUsername($username);
-
+        //var_dump($user->password); die;
         if (password_verify($password, $user->password)) {
             $this->showMenuAdmin();
         } else {

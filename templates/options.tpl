@@ -8,7 +8,7 @@
         <input type="text" name="autor" placeholder="autor">
         <input type="text" name="precio" placeholder="precio">
         <input type="number" name="id_categoria" placeholder="categoria">
-        
+
         <button class='btn btn-success btn-sm' type="submit" name="enviar">Insertar libro</button>
     </form>
 </div>

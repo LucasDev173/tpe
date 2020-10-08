@@ -32,6 +32,7 @@ switch ($params[0]) {
     case 'verify':
         $controller = new AuthController();
         $controller->loginUser();
+        break;
     case 'insertar':
         $controller = new BookController();
         $controller->insert_libro();
@@ -61,7 +62,7 @@ switch ($params[0]) {
         break;
     case 'modif':
         $controller = new BookController();
-        $controller->modif_final($_POST);
+        $controller->modif_final();
         break;
     default:
         header("HTTP/1.0 404 Not Found");
