@@ -1,7 +1,7 @@
 {include 'templates/header.tpl'}
 {include 'templates/navbar.tpl'}
 
-<div>
+<div class='container mb-3'>
     <p>Menu del Administrador</p>
     <form name="enviar" action="insertar" method="POST">
         <input type="text" name="titulo" placeholder="titulo">
