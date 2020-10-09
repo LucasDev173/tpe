@@ -11,8 +11,9 @@ class BooksView{
         $this->smarty->assign('title', "Libreria");
     }
 
-    function showHome($libros){
+    function showHome($libros, $categorias){
         $this->smarty->assign('libros', $libros);
+        $this->smarty->assign('categorias', $categorias);
         $this->smarty->display('templates/booksList.tpl');
     }
 

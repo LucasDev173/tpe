@@ -19,8 +19,9 @@ class BookController {
     function showHome(){
         //Tomo todos los libros de la DB
         $libros = $this->model->getAll();
+        $categorias = $this->modelcat->getAll();
         //Actualizo la vista
-        $this->view->showHome($libros);
+        $this->view->showHome($libros, $categorias);
     }
 
     //Muestra los resultados de la barra de busqueda
@@ -50,7 +51,8 @@ class BookController {
     // Filtro la categoria seleccionada
     function filtrar_categoria($id_categoria) {
         $libros = $this->model->getCategoria($id_categoria);
-        $this->view->showHome($libros);
+        $categorias = $this->modelcat->getAll();
+        $this->view->showHome($libros, $categorias);
     }
 
     //Elimino el libro con la ID seleccionada. SOLO ADMIN

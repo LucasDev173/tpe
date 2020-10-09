@@ -26,14 +26,15 @@
       <div class="col-4">
         <form action="filtrar" method="post">
           <label for="select">Filtrar por genero:</label>
-            <select name="select">
-                  <option value="1">policial</option>
-                  <option value="2">suspenso</option>
-                  <option value="3">fantasia</option>
-              </select>
+            <select name="Sel_cat">
+              {foreach from = $categorias item = categoria}
+                  <option value={$categoria->ide}>{$categoria->nombre}</option>
+              {/foreach}
+            </select>
             <button class="btn btn-dark" type="submit">Filtrar</button>
         </form>
       </div>
+      <a class="btn btn-dark" href="{BASE_URL}home#contenedor">Catalogo completo</a>
     </div>
   </div>
 </div>

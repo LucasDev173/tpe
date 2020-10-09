@@ -44,8 +44,9 @@ switch ($params[0]) {
         $controller->insert_libro();
         break;
     case 'filtrar':
+        //var_dump($_POST); die;
         $controller = new BookController();
-        $controller->filtrar_categoria($_POST);
+        $controller->filtrar_categoria($_POST["Sel_cat"]);
         break;
     case 'buscar':
         $controller = new BookController();
