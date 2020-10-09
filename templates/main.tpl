@@ -15,18 +15,27 @@
   </div>
   <div>
     <h2 class="mt-3">Catalogo:</h2>
-      <form action="filtrar" method="post">
-        <label for="select">Ver genero seleccionado</label>
-          <select name="select">
-                <option value="1">policial</option>
-                <option value="2">suspenso</option>
-                <option value="3">fantasia</option>
-            </select>
-          <button type="submit">Filtrar</button>
-      </form>
+    <div class="row">
+      <div class="col-4">
+        <form class="form-inline my-2 my-lg-0" action="buscar" method="POST">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search" 
+          name="pattern" required>
+          <button class="btn btn-dark my-2 my-sm-0" type="submit">🔍</button>
+        </form>
+      </div>
+      <div class="col-4">
+        <form action="filtrar" method="post">
+          <label for="select">Filtrar por genero:</label>
+            <select name="select">
+                  <option value="1">policial</option>
+                  <option value="2">suspenso</option>
+                  <option value="3">fantasia</option>
+              </select>
+            <button class="btn btn-dark" type="submit">Filtrar</button>
+        </form>
+      </div>
+    </div>
   </div>
-  
-  
 </div>
 
 

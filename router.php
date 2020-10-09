@@ -1,6 +1,7 @@
 <?php
 include_once 'app/controllers/books.controller.php';
 include_once 'app/controllers/auth.controller.php';
+include_once 'app/helpers/auth.helper.php';
 
 // defino la base url para la construccion de links con urls semánticas
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -22,6 +23,8 @@ switch ($params[0]) {
         $controller->showHome();
         break;
     case 'menuAdmin':
+        $helper = new AuthHelper();
+        $helper->checkLogged();
         $controller = new AuthController();
         $controller->showMenuAdmin();
         break;
@@ -29,6 +32,9 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showLogin();
         break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logoutUser();
     case 'verify':
         $controller = new AuthController();
         $controller->loginUser();

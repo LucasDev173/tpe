@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once 'app/view/books.view.php';
 include_once 'app/models/books.model.php';
 include_once 'app/models/category.model.php';

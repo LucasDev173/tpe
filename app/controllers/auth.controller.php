@@ -5,6 +5,7 @@ include_once 'app/models/user.model.php';
 include_once 'app/view/books.view.php';
 include_once 'app/models/books.model.php';
 include_once 'app/models/category.model.php';
+include_once 'app/helpers/auth.helper.php';
 
 class AuthController {
 
@@ -13,6 +14,7 @@ class AuthController {
     private $booksView;
     private $booksModel;
     private $categoryModel;
+    private $authHelper;
     
     function __construct(){
         //el modelo y la view de los libros ahora tienen el nombre
@@ -23,6 +25,7 @@ class AuthController {
         $this->booksView = new BooksView();
         $this->booksModel = new BooksModel();
         $this->categoryModel = new CategoryModel();
+        $this->authHelper = new AuthHelper();
     }
 
     function showMenuAdmin(){
@@ -47,9 +50,15 @@ class AuthController {
         $user = $this->model->getByUsername($username);
         
         if (password_verify($password, $user->password)) {
-            $this->showMenuAdmin();
+            //se inicia la sesion
+            $this->authHelper->login($user);
+            header("Location: " . BASE_URL . "menuAdmin"); 
         } else {
             echo "acceso denegado";
         }
+    }
+
+    function logoutUser(){
+        $this->authHelper->logout();
     }
 }
