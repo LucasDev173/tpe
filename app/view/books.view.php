@@ -16,8 +16,9 @@ class BooksView{
         $this->smarty->display('templates/booksList.tpl');
     }
 
-    function showMenuAdmin($libros){
+    function showMenuAdmin($libros, $categorias){
         $this->smarty->assign('libros', $libros);
+        $this->smarty->assign('categorias', $categorias);
         $this->smarty->display('templates/options.tpl');
     }
 

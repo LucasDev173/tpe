@@ -4,6 +4,7 @@ include_once 'app/view/auth.view.php';
 include_once 'app/models/user.model.php';
 include_once 'app/view/books.view.php';
 include_once 'app/models/books.model.php';
+include_once 'app/models/category.model.php';
 
 class AuthController {
 
@@ -11,6 +12,7 @@ class AuthController {
     private $model;
     private $booksView;
     private $booksModel;
+    private $categoryModel;
     
     function __construct(){
         //el modelo y la view de los libros ahora tienen el nombre
@@ -20,11 +22,13 @@ class AuthController {
         $this->model = new UserModel();
         $this->booksView = new BooksView();
         $this->booksModel = new BooksModel();
+        $this->categoryModel = new CategoryModel();
     }
 
     function showMenuAdmin(){
         $libros = $this->booksModel->getAll();
-        $this->booksView->showMenuAdmin($libros);
+        $categorias = $this->categoryModel->getAll();
+        $this->booksView->showMenuAdmin($libros, $categorias);
     }
 
     function eliminar_libro($id) {
@@ -41,7 +45,7 @@ class AuthController {
         $password = $_POST['password'];
         
         $user = $this->model->getByUsername($username);
-        //var_dump($user->password); die;
+        
         if (password_verify($password, $user->password)) {
             $this->showMenuAdmin();
         } else {

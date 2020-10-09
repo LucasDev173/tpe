@@ -2,15 +2,18 @@
 
 include_once 'app/view/books.view.php';
 include_once 'app/models/books.model.php';
+include_once 'app/models/category.model.php';
 
 class BookController {
 
     private $view;
     private $model;
+    private $modelcat;
 
     function __construct(){
         $this->view = new BooksView();
         $this->model = new BooksModel();
+        $this->modelcat = new CategoryModel();
     }
     
     function showHome(){
@@ -32,7 +35,7 @@ class BookController {
         $titulo = $_POST["titulo"];
         $autor = $_POST["autor"];
         $precio = $_POST["precio"];
-        $id_cat = $_POST["id_categoria"];
+        $id_cat = $_POST["Sel_cat"];
 
         if ((empty($titulo) || empty($autor) || empty($precio) || empty($id_cat))) {
             $this->view->showError('Faltan datos');
@@ -53,7 +56,8 @@ class BookController {
     //Elimino el libro con la ID seleccionada. SOLO ADMIN
     function eliminar_libro($id) {
         $libros = $this->model->remove($id);
-        $this->view->showMenuAdmin($libros);
+        $categorias = $this->modelcat->getAll();
+        $this->view->showMenuAdmin($libros, $categorias);
     }
 
     //Ver el detalle de un libro(item) en particular
@@ -73,6 +77,7 @@ class BookController {
         $libro = array("id"=>$_POST["id"], "titulo"=>$_POST["titulo"], "autor"=>$_POST["autor"], "precio"=>$_POST["precio"], 
                        "categoria"=>$_POST["categoria"]);
         $libros = $this->model->updateLibro($libro);
-        $this->view->showMenuAdmin($libros);
+        $categorias = $this->modelcat->getAll();
+        $this->view->showMenuAdmin($libros, $categorias);
     }
 }  
