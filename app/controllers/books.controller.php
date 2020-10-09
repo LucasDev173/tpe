@@ -44,7 +44,7 @@ class BookController {
         // inserto la tarea en la DB
         $id = $this->model->insert($titulo, $autor,  $precio, $id_cat);
         // redirigimos al listado
-        header("Location: " . BASE_URL); 
+        header("Location: " . BASE_URL . "menuAdmin"); 
     }
 
     // Filtro la categoria seleccionada
