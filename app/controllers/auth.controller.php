@@ -49,12 +49,12 @@ class AuthController {
         
         $user = $this->model->getByUsername($username);
         
-        if (password_verify($password, $user->password)) {
+        if ($user && password_verify($password, $user->password)) {
             //se inicia la sesion
             $this->authHelper->login($user);
             header("Location: " . BASE_URL . "menuAdmin"); 
         } else {
-            echo "acceso denegado";
+            $this->view->showLogin("¡Error! Nombre o contraseña invalida.");
         }
     }
 

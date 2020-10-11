@@ -6,8 +6,9 @@ class AuthView {
 
     private $smarty;
 
-    function showLogin(){
+    function showLogin($error = null){
         $this->smarty = new Smarty();
+        $this->smarty->assign('error', $error);
         $this->smarty->display('templates/login.tpl');
     }
 }
