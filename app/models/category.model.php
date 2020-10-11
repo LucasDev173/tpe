@@ -36,4 +36,18 @@ class CategoryModel {
         $query = $this->db->prepare('INSERT INTO `categoria`(`nombre`) VALUES (?)');
         $query->execute([$categoria]);
     }
+
+    function getCategoria($id){
+        $query = $this->db->prepare('SELECT * FROM categoria WHERE ide = ?');
+        $query->execute([$id]);
+        $categoria = $query->fetch(PDO::FETCH_OBJ);
+        return $categoria;
+    }
+
+    function updateCategory($categoria){
+        $ide = $categoria["ide"];
+        $nombre = $categoria["nombre"];
+        $query = $this->db->prepare('UPDATE categoria SET nombre = ? WHERE ide = ?');
+        $query->execute([$nombre, $ide]);
+    }
 }

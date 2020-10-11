@@ -83,6 +83,17 @@ class BookController {
         $this->view->showMenuAdmin($libros, $categorias);
     }
 
+    function modifCategoria($id){
+        $categoria = $this->modelcat->getCategoria($id);
+        $this->view->showCategoryModify($categoria);
+    }
+
+    function categoryModifFinal(){
+        $categoria = array("ide"=>$_POST["id"], "nombre"=>$_POST["name"]);
+        $this->modelcat->updateCategory($categoria);
+        header("Location: " . BASE_URL . "menuAdmin"); 
+    }
+
     // Inserta un libro con los datos enviados. SOLO ADMIN
     function insertar_categoria() {
         $categoria = $_POST["categoria"];

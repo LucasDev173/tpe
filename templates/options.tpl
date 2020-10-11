@@ -29,6 +29,10 @@
     </form>
 </div>
 
+<div class='container mb-3'>
+    <h3>Libros:</h3>
+</div>
+
 {* Aca empieza el listado de libros *}
 <div id="contenedor" class='container mb-3'>
     <ul class='list-group mt-5'>
@@ -43,6 +47,26 @@
                     <a class="btn btn-secondary" href="{BASE_URL}modificar/{$libro->id}">Modificar</a>
                     <a class="btn btn-danger" href="{BASE_URL}eliminar/{$libro->id}">Eliminar</a>
                 </div>
+            </li>
+        {/foreach}
+    </ul>
+</div>
+
+<div class='container mb-3'>
+    <h3>Categorias:</h3>
+</div>
+
+{*Comienzo del listado de categorias*}
+<div id="contenedor" class='container mb-3'>
+    <ul class='list-group mt-5'>
+        {foreach from=$categorias item=categoria}
+            <li class='list-group-item'>
+                ID: {$categoria->ide} <br>
+                NOMBRE: {$categoria->nombre} <br> 
+                <a class="btn btn-secondary" href="{BASE_URL}modificarCategoria/{$categoria->ide}">Modificar</a>
+                {*<div>
+                    <a class="btn btn-danger" href="{BASE_URL}eliminar/{$libro->id}">Eliminar</a>
+                </div>*}
             </li>
         {/foreach}
     </ul>

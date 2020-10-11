@@ -18,7 +18,7 @@
                 </div>
             </div>
     </div>
-    <a class="btn btn-dark mt-5" href="{BASE_URL}MenuAdmin">Volver al catalogo</a>
+    <a class="btn btn-dark mt-5" href="{BASE_URL}menuAdmin">Volver al catalogo</a>
 </div>
 
 {include 'templates/footer.tpl'}
