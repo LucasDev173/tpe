@@ -14,9 +14,9 @@
 {* Aca empieza la funcion Insertar libros *}
 <div class='container mb-3'>
     <form name="enviar" action="insertar" method="POST">
-        <input type="text" name="titulo" placeholder="titulo">
-        <input type="text" name="autor" placeholder="autor">
-        <input type="text" name="precio" placeholder="precio">
+        <input type="text" name="titulo" placeholder="titulo" required>
+        <input type="text" name="autor" placeholder="autor" required>
+        <input type="text" name="precio" placeholder="precio" required>
         <select name="Sel_cat">
             {foreach from = $categorias item = categoria}
                 <option value={$categoria->ide}>{$categoria->nombre}</option>
@@ -48,6 +48,7 @@
 {*Titulo del listado de categorias*}
 <div class='container mb-3'>
     <h3>Categorias:</h3>
+    <h6>(No se podran eliminar si hay libros que pertenezcan a ella)</h6>
 </div>
 
 {* Aca empieza la funcion Insertar Categorias *}

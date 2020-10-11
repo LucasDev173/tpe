@@ -107,4 +107,11 @@ class BookController {
         // redirigimos al listado
         header("Location: " . BASE_URL . "menuAdmin"); 
     }
+
+    //Elimino la categoria con la IDE seleccionada. SOLO ADMIN
+    function EliminarCategoria($id) {
+        $libros = $this->model->getAll();
+        $categorias = $this->modelcat->removeCategory($id);
+        $this->view->showMenuAdmin($libros, $categorias);
+    }
 }  

@@ -50,4 +50,11 @@ class CategoryModel {
         $query = $this->db->prepare('UPDATE categoria SET nombre = ? WHERE ide = ?');
         $query->execute([$nombre, $ide]);
     }
+
+    function removeCategory($id){
+        $query = $this->db->prepare('DELETE FROM categoria WHERE ide = ?');
+        $query->execute([$id]);
+        $categorias = $this->getAll();//Arreglo de categorias
+        return $categorias;
+    }
 }
