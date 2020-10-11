@@ -1,8 +1,13 @@
 {include 'templates/header.tpl'}
 {include 'templates/navbar.tpl'}
 
+{* titulo *}
 <div class='container mb-3'>
-    <p>Menu del Administrador</p>
+    <h2>Menu del Administrador</h2>
+</div>
+
+{* Aca empieza la funcion Insertar libros *}
+<div class='container mb-3'>
     <form name="enviar" action="insertar" method="POST">
         <input type="text" name="titulo" placeholder="titulo">
         <input type="text" name="autor" placeholder="autor">
@@ -12,16 +17,19 @@
                 <option value={$categoria->ide}>{$categoria->nombre}</option>
             {/foreach}
         <select>
-
-        {* <input type="number" name="id_categoria" placeholder="categoria"> *}
-
         <button class='btn btn-success btn-sm' type="submit">Insertar libro</button>
     </form>
 </div>
-{* <div class='container mb-3'>
-    <label for= >Desea administrar las Categorias?</label>
-    <button class="btn btn-primary">Ir a Categorias</button>
-</div> *}
+
+{* Aca empieza la funcion Insertar Categorias *}
+<div class='container mb-3'>
+    <form action="insertar_categoria" method="POST">
+        <input type="text" name="categoria" placeholder="categoria">
+        <button class='btn btn-success btn-sm' type="submit">Insertar categoria</button>
+    </form>
+</div>
+
+{* Aca empieza el listado de libros *}
 <div id="contenedor" class='container mb-3'>
     <ul class='list-group mt-5'>
         {foreach from=$libros item=libro}

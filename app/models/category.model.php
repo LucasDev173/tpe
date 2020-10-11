@@ -32,4 +32,8 @@ class CategoryModel {
         return $categorias;
     }
 
+    function insert($categoria) {
+        $query = $this->db->prepare('INSERT INTO `categoria`(`nombre`) VALUES (?)');
+        $query->execute([$categoria]);
+    }
 }

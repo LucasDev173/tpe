@@ -82,4 +82,18 @@ class BookController {
         $categorias = $this->modelcat->getAll();
         $this->view->showMenuAdmin($libros, $categorias);
     }
+
+    // Inserta un libro con los datos enviados. SOLO ADMIN
+    function insertar_categoria() {
+        $categoria = $_POST["categoria"];
+        
+        if (empty($categoria)) {
+            $this->view->showError('Faltan datos');
+            die();
+        }
+        // inserto la tarea en la DB
+        $this->modelcat->insert($categoria);
+        // redirigimos al listado
+        header("Location: " . BASE_URL . "menuAdmin"); 
+    }
 }  
