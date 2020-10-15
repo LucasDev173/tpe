@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2020 a las 01:45:34
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.9
+-- Tiempo de generación: 14-10-2020 a las 15:01:55
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -37,12 +38,10 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`ide`, `nombre`) VALUES
-(1, 'policial'),
-(2, 'suspenso'),
-(3, 'fantasia'),
-(4, 'ciencia ficcion'),
-(5, 'novela corta'),
-(6, 'fabula');
+(1, 'aventura'),
+(3, 'acción'),
+(6, 'fabula'),
+(14, 'policial');
 
 -- --------------------------------------------------------
 
@@ -63,14 +62,11 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`id`, `titulo`, `autor`, `precio`, `id_categoria`) VALUES
-(1, 'Blancanieves y los siete enanitos', 'popular', 200, 1),
-(2, 'La bella durmiente', 'leonardo', 300, 2),
-(3, 'Cenicienta', 'yo', 100, 1),
-(4, 'Peter Pan', 'yo', 115, 3),
-(5, 'Alicia en el Pais de las Maravillas', 'popular', 100, 3),
-(6, 'caperucita roja', 'popular', 250, 2),
-(7, 'Los 3 chanchitos', 'popular', 200, 1),
-(8, 'El gato con botas', 'popular', 110, 6);
+(34, 'la madre de otros', 'popular', 100, 1),
+(36, 'La perra que los pario', 'matias', 100, 6),
+(38, 'mono con navaja', 'matias', 100, 3),
+(46, 'No tengo libro que me guste', 'popular', 100, 6),
+(48, 'el ultimo', 'yo', 100, 3);
 
 -- --------------------------------------------------------
 
@@ -80,16 +76,16 @@ INSERT INTO `libro` (`id`, `titulo`, `autor`, `precio`, `id_categoria`) VALUES
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `username` varchar(100) CHARACTER SET latin1 NOT NULL,
-  `password` varchar(255) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `username` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `username`, `password`) VALUES
-(1, 'lucasdev', '$2y$12$pQMKX75a1OS1vduRK83w0OVrnW9hSDNXSeW3i/FaLQrcwIViFUguK');
+(1, 'matias', '$2y$12$xt0XjCZ24fbaJVaLheMoE.XzLI4o.QpviURM4k1.l8kU7ZmrnTIjy');
 
 --
 -- Índices para tablas volcadas
@@ -106,10 +102,7 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_categoria` (`id_categoria`),
-  ADD KEY `id_categoria_2` (`id_categoria`),
-  ADD KEY `id_categoria_3` (`id_categoria`),
-  ADD KEY `id_categoria_4` (`id_categoria`);
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -122,10 +115,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `ide` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -141,7 +140,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `libro`
 --
 ALTER TABLE `libro`
-  ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`ide`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`ide`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
