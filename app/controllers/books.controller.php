@@ -33,19 +33,25 @@ class BookController {
 
     // Inserta un libro con los datos enviados. SOLO ADMIN
     function insert_libro() {
-        $titulo = $_POST["titulo"];
-        $autor = $_POST["autor"];
-        $precio = $_POST["precio"];
-        $id_cat = $_POST["Sel_cat"];
-
-        if ((empty($titulo) || empty($autor) || empty($precio) || empty($id_cat))) {
-            $this->view->showError('Faltan datos');
-            die();
+        $categorias = $this->modelcat->getAll();
+        if ((empty($_POST["titulo"]) || empty($_POST["autor"]) || empty($_POST["precio"]) || empty($_POST["Sel_cat"]))) {
+            $libros = $this->model->getAll();
+            $message = "Faltan datos obligatorios.";
+            $this->view->showMenuAdmin($libros, $categorias, $message);
         }
-        // inserto la tarea en la DB
-        $id = $this->model->insert($titulo, $autor,  $precio, $id_cat);
-        // redirigimos al listado
-        header("Location: " . BASE_URL . "menuAdmin"); 
+        else{
+            $titulo = $_POST["titulo"];
+            $autor = $_POST["autor"];
+            $precio = $_POST["precio"];
+            $id_cat = $_POST["Sel_cat"];
+            
+            // inserto la tarea en la DB
+            $id = $this->model->insert($titulo, $autor,  $precio, $id_cat);
+            // redirigimos al listado
+            $libros = $this->model->getAll();
+            $message = "¡Libro insertado con exito!";
+            $this->view->showMenuAdmin($libros, $categorias, $message);
+        }
     }
 
     // Filtro la categoria seleccionada
@@ -59,7 +65,8 @@ class BookController {
     function eliminar_libro($id) {
         $libros = $this->model->remove($id);
         $categorias = $this->modelcat->getAll();
-        $this->view->showMenuAdmin($libros, $categorias);
+        $message = "¡Libro eliminado con exito!";
+        $this->view->showMenuAdmin($libros, $categorias, $message);
     }
 
     //Ver el detalle de un libro(item) en particular
@@ -80,7 +87,8 @@ class BookController {
                        "categoria"=>$_POST["categoria"]);
         $libros = $this->model->updateLibro($libro);
         $categorias = $this->modelcat->getAll();
-        $this->view->showMenuAdmin($libros, $categorias);
+        $message = "¡Libro modificado con exito!";
+        $this->view->showMenuAdmin($libros, $categorias, $message);
     }
 
     function modifCategoria($id){
@@ -91,27 +99,50 @@ class BookController {
     function categoryModifFinal(){
         $categoria = array("ide"=>$_POST["id"], "nombre"=>$_POST["name"]);
         $this->modelcat->updateCategory($categoria);
-        header("Location: " . BASE_URL . "menuAdmin"); 
+
+        $libros = $this->model->getAll();
+        $categorias = $this->modelcat->getAll();
+        $message = "¡Categoria modificado con exito!";
+        $this->view->showMenuAdmin($libros, $categorias, $message);
     }
 
     // Inserta un libro con los datos enviados. SOLO ADMIN
     function insertar_categoria() {
-        $categoria = $_POST["categoria"];
-        
-        if (empty($categoria)) {
-            $this->view->showError('Faltan datos');
-            die();
+        $libros = $this->model->getAll();
+
+        //revisa que la el post no este vacio (el que este vacio solo seria posible si el usuario abriera
+        //la url insertar_categoria fuera de la forma)
+        if (empty($_POST["categoria"])) {
+            $message = "Faltan datos obligatorios.";
+            $categorias = $this->modelcat->getAll();
+            $this->view->showMenuAdmin($libros, $categorias, $message);
         }
-        // inserto la tarea en la DB
-        $this->modelcat->insert($categoria);
-        // redirigimos al listado
-        header("Location: " . BASE_URL . "menuAdmin"); 
+        else {
+            $categoria = $_POST["categoria"];
+        
+            // inserto la tarea en la DB
+            $this->modelcat->insert($categoria);
+    
+            // redirigimos al listado
+            $categorias = $this->modelcat->getAll();
+            $message = "¡Categoria insertada con exito!";
+            $this->view->showMenuAdmin($libros, $categorias, $message);
+        }
     }
 
     //Elimino la categoria con la IDE seleccionada. SOLO ADMIN
     function EliminarCategoria($id) {
+        $result = $this->modelcat->removeCategory($id);
         $libros = $this->model->getAll();
-        $categorias = $this->modelcat->removeCategory($id);
-        $this->view->showMenuAdmin($libros, $categorias);
+        $categorias = $this->modelcat->getAll();
+
+        if ($result){
+            $message = "¡Categoria eliminada con exito!";
+            $this->view->showMenuAdmin($libros, $categorias, $message);
+        }
+        else {
+            $message = "No se puede eliminar una categoria en uso.";
+            $this->view->showMenuAdmin($libros, $categorias, $message);
+        }
     }
 }  

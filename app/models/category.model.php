@@ -53,8 +53,8 @@ class CategoryModel {
 
     function removeCategory($id){
         $query = $this->db->prepare('DELETE FROM categoria WHERE ide = ?');
-        $query->execute([$id]);
-        $categorias = $this->getAll();//Arreglo de categorias
-        return $categorias;
+        $results = $query->execute([$id]);
+        
+        return $results;
     }
 }

@@ -2,6 +2,8 @@
 {include 'templates/navbar.tpl'}
 
     <div class='container mb-3'>
+        <h2>Modificar categoria</h2>
+        <p>(No se puede modificar la id)</p>
         <div class="row">
             <div class="col-4">
                 <div class="mt-3 row">
