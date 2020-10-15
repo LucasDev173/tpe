@@ -2,6 +2,8 @@
 {include 'templates/navbar.tpl'}
 
     <div class='container mb-3'>
+        <h2>Modificar libro</h2>
+        <p>(No se podran modificar la id o categoria)</p>
         <div class="row">
             <div class="col-4">
                 <img class='mt-5 rounded mx-auto d-block img-thumbnail' src="img/portada-generica.png" width="300" height="150">
@@ -11,7 +13,7 @@
                         <input type="text" name="titulo" value="{$libro->titulo}">
                         <input type="text" name="autor" value="{$libro->autor}">
                         <input type="text" name="precio" value="{$libro->precio}">
-                        <input type="text" name="categoria" value="{$libro->nombre}">
+                        <input type="text" name="categoria" value="{$libro->nombre}" readonly>
                         <button class='btn btn-success btn-sm' type="submit">Modificar</button>
                         {* <a class='btn btn-success btn-sm' href="{BASE_URL}modif/{$libro->id}">modificar valores</a> *}
                     </form>

@@ -1,6 +1,12 @@
 {include 'templates/header.tpl'}
 {include 'templates/navbar.tpl'}
 
+{if $message}
+  <div class="alert alert-warning text-center" role="alert">
+    {$message}
+  </div>
+{/if}
+
 {* titulo *}
 <div class='container mb-3'>
     <h2>Menu del Administrador</h2>
