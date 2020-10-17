@@ -39,8 +39,9 @@ class BooksView{
         $this->smarty->display('templates/bookDetail.tpl');
     }
 
-    function ShowItemModify($libro) {
+    function ShowItemModify($libro, $categorias) {
         $this->smarty->assign('libro', $libro);
+        $this->smarty->assign('categorias', $categorias);
         $this->smarty->display('templates/bookModify.tpl');
     }
 

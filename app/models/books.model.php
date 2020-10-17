@@ -112,9 +112,9 @@ class BooksModel {
         $titulo = $libro["titulo"];
         $autor = $libro["autor"];
         $precio = $libro["precio"];
-        //$categoria = $libro["categoria"];
-        $query = $this->db->prepare('UPDATE libro JOIN categoria SET titulo = ?, autor = ?, precio = ? WHERE id = ?');
-        $query->execute([$titulo, $autor, $precio, $id]);
+        $categoria = $libro["categoria"];
+        $query = $this->db->prepare('UPDATE libro JOIN categoria SET titulo = ?, autor = ?, precio = ?, id_categoria = ? WHERE id = ?');
+        $query->execute([$titulo, $autor, $precio, $categoria, $id]);
         $libros = $this->getAll(); // arreglo de libros
         return $libros;
     } 
