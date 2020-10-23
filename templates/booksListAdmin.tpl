@@ -1,9 +1,9 @@
-{*Esta parte muestra la BD de libros con todos los datos. NO USADA POR EL MOMENTO*}
+{*Esta parte muestra la BD de libros con todos los datos.*}
 <div id="contenedor" class='container mb-3'>
     <ul class='list-group mt-5'>
         {foreach from=$libros item=libro}
             <li class='list-group-item'>
-                ID: {$libro->id} <br>
+                {* ID: {$libro->id} <br> *}
                 TITULO: {$libro->titulo} <br> 
                 AUTOR: {$libro->autor} <br>
                 AUTOR: {$libro->autor} <br>
