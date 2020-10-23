@@ -8,10 +8,9 @@ $router = new Router();
 
 // define la tabla de ruteo
 $router->addRoute('Libro', 'GET', 'ApiLibroController', 'ObtenerLibros');
+$router->addRoute('Libro/:ID', 'GET', 'ApiLibroController', 'obtenerLibro');
 /* 
-$router->addRoute('Libro/:ID', 'GET', 'ApiTaskController', 'obtenerLibro');
 $router->addRoute('Libro', 'POST', 'ApiTaskController', 'crearLibro');
- 
 */
 
 // rutea

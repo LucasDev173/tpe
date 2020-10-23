@@ -28,4 +28,13 @@ class ApiLibroController {
         $books = $this->model->getAll($parametros);
         $this->view->response($books, 200);
     }
+
+    public function ObtenerLibro($params = null) {
+        $idLibro = $params[':ID'];
+        $book = $this->model->getLibro($idLibro);
+        if ($book)
+            $this->view->response($book, 200);
+        else
+            $this->view->response("No existe el libro con ID: $idLibro", 404);
+    }
 }
