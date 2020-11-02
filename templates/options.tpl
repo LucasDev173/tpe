@@ -41,7 +41,9 @@
                 TITULO: {$libro->titulo} <br> 
                 AUTOR: {$libro->autor} <br>
                 PRECIO: {$libro->precio} <br>
-                CATEGORIA: {$libro->nombre}
+                CATEGORIA: {$libro->nombre} <br>
+                COMENTARIO: {$libro->texto} <br>
+                PUNTAJE: {$libro->puntos}
                 <div>
                     <a class="btn btn-secondary" href="{BASE_URL}modificar/{$libro->id}">Modificar</a>
                     <a class="btn btn-danger" href="{BASE_URL}eliminar/{$libro->id}">Eliminar</a>

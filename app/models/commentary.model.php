@@ -1,8 +1,10 @@
 <?php
 
+
 class CommentaryModel {
 
     private $db;
+    
 
     function __construct() {
         // 1. Abro la conexión
@@ -24,4 +26,8 @@ class CommentaryModel {
         return $comentarios;
     }
 
+    public function BorrarComentario($id) {
+        $query = $this->db->prepare('DELETE FROM comentario WHERE id = ?');
+        $query->execute($id);
+    }
 }

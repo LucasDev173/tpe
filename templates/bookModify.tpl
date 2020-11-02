@@ -13,7 +13,8 @@
                         <input type="text" name="titulo" value="{$libro->titulo}">
                         <input type="text" name="autor" value="{$libro->autor}">
                         <input type="text" name="precio" value="{$libro->precio}">
-                        {* <input type="text" name="categoria" value="{$libro->nombre}" readonly> *}
+                        <input type="text" name="comentario" value="{$libro->texto}" readonly>
+                        <input type="text" name="puntaje" value="{$libro->puntos}" readonly>
                         <select name="Sel_cat">
                             {foreach from = $categorias item = categoria}
                                 <option value={$categoria->ide}>{$categoria->nombre}</option>
