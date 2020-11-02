@@ -27,7 +27,8 @@ class CommentaryModel {
     }
 
     public function BorrarComentario($id) {
-        $query = $this->db->prepare('DELETE FROM comentario WHERE id = ?');
-        $query->execute($id);
+        $query = $this->db->prepare('DELETE FROM comentario WHERE idc = ?');
+        $resultado = $query->execute(array($id));
+        return $resultado;
     }
 }

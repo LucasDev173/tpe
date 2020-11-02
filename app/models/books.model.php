@@ -24,7 +24,7 @@ class BooksModel {
 
         // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con JOIN)
         $query = $this->db->prepare('SELECT * FROM libro JOIN categoria ON libro.id_categoria = categoria.ide 
-                                     INNER JOIN comentario ON libro.id_comentario = comentario.idc');
+                                     /* INNER JOIN comentario ON libro.id_comentario = comentario.idc */');
         $query->execute();
 
         // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
@@ -82,7 +82,7 @@ class BooksModel {
         $query = $this->db->prepare('SELECT * FROM libro JOIN categoria ON libro.id_categoria = categoria.ide 
         JOIN comentario ON libro.id_comentario = comentario.idc WHERE id = ?');
         $query->execute([$id]);
-        // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
+        // 3. Obtengo la respuesta con un fetch (porque es uno solo)
         $libro = $query->fetch(PDO::FETCH_OBJ); // El libro seleccionado
         return $libro;
     }

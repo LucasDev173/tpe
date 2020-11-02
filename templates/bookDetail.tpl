@@ -11,9 +11,9 @@
                         TITULO: {$libro->titulo} <br> 
                         AUTOR: {$libro->autor} <br>  
                         PRECIO: {$libro->precio} <br>  
-                        CATEGORIA: {$libro->nombre}<br>
+                        CATEGORIA: {$libro->nombre} {* <br>
                         COMENTARIO: {$libro->texto} <br>
-                        PUNTAJE: {$libro->puntos}
+                        PUNTAJE: {$libro->puntos} *}
                     </li>
                 </ul>
             </div>
