@@ -52,7 +52,12 @@ class AuthController {
         if ($user && password_verify($password, $user->password)) {
             //se inicia la sesion
             $this->authHelper->login($user);
-            header("Location: " . BASE_URL . "menuAdmin"); 
+            if($user->admin == 1){
+                header("Location: " . BASE_URL . "menuAdmin"); 
+            }
+            else{
+                header("Location: " . BASE_URL . "home"); 
+            }
         } else {
             $this->view->showLogin("¡Error! Nombre o contraseña invalida.");
         }
