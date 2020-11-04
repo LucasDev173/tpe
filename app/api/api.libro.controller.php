@@ -46,6 +46,17 @@ class ApiLibroController {
         $this->view->response($comentarios, 200);
     }
 
+    public function obtenerComentario($params = null) {
+        $id_libro = $params[':ID'];
+        $comentario = $this->c_model->obtenerComentario($id_libro);
+        if ($comentario) {
+            $this->view->response($comentario, 200);
+        }
+        else {
+            $this->view->response($comentario, 404);
+        }
+    }
+
     //Borra el comentario con el ID que viene por parametro
     public function BorrarComentario($params = null) {
         $idComentario = $params[':ID'];
