@@ -7,6 +7,12 @@ class AuthHelper {
         }
     }
     
+    function checkAdmin(){
+        if ($_SESSION['ADMIN_USER'] == 0){
+            header("Location: " . BASE_URL . "home");
+        }
+    }
+
     function login($user) {
         session_start();
         $_SESSION['ID_USER'] = $user->id;

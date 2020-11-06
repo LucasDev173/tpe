@@ -16,6 +16,10 @@
       {/if}
     </ul>
     {if isset($smarty.session.ID_USER)}
+      
+      <span class="navbar-text mr-2">
+        Loggeado como {$smarty.session.NAME_USER}
+      </span>
       <a href="logout" class="btn btn-outline-light ml-2">Cerrar sesion</a>
     {else}
       <a href="login" class="btn btn-outline-light ml-2">Iniciar sesion</a>

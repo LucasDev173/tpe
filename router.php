@@ -25,6 +25,7 @@ switch ($params[0]) {
     case 'menuAdmin':
         $helper = new AuthHelper();
         $helper->checkLogged();
+        $helper->checkAdmin();
         $controller = new AuthController();
         $controller->showMenuAdmin();
         break;
