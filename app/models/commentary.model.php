@@ -26,8 +26,17 @@ class CommentaryModel {
         return $comentarios;
     }
 
+    public function obtenerComentario($id_libro) {
+        $query = $this->db->prepare('SELECT * FROM comentario WHERE id_libro = ?');
+        $query->execute([$id_libro]);
+        
+        $comentarios = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de comentarios
+        return $comentarios;
+     }
+
     public function BorrarComentario($id) {
-        $query = $this->db->prepare('DELETE FROM comentario WHERE id = ?');
-        $query->execute($id);
+        $query = $this->db->prepare('DELETE FROM comentario WHERE idc = ?');
+        $resultado = $query->execute(array($id));
+        return $resultado;
     }
 }
