@@ -78,14 +78,13 @@ class BookController {
     //Modificar los datos de un libro(item) en particular. SOLO ADMIN
     function modif_libro($id) {
         $libro = $this->model->getLibro($id);
-        $categorias = $this->modelcat->getAll();
-        $this->view->showItemModify($libro, $categorias);
+        $this->view->showItemModify($libro);
     }
 
     //Actualiza la base de datos del ID enviado. SOLO ADMIN
     function modif_final() {
         $libro = array("id"=>$_POST["id"], "titulo"=>$_POST["titulo"], "autor"=>$_POST["autor"], "precio"=>$_POST["precio"], 
-                       "categoria"=>$_POST["Sel_cat"]);
+                       "categoria"=>$_POST["categoria"]);
         $libros = $this->model->updateLibro($libro);
         $categorias = $this->modelcat->getAll();
         $message = "¡Libro modificado con exito!";

@@ -25,17 +25,8 @@ switch ($params[0]) {
     case 'menuAdmin':
         $helper = new AuthHelper();
         $helper->checkLogged();
-        $helper->checkAdmin();
         $controller = new AuthController();
         $controller->showMenuAdmin();
-        break;
-    case 'register':
-        $controller = new AuthController();
-        $controller->showRegister();
-        break;
-    case 'verifyRegis':
-        $controller = new AuthController();
-        $controller->verifyRegister();
         break;
     case 'login':
         $controller = new AuthController();
@@ -62,10 +53,10 @@ switch ($params[0]) {
         $controller->showSearch();
         break;
     case 'eliminar':
-        $controller = new BookController();
-        $id = $params[1];
-        $controller->eliminar_libro($id);
-        break;
+            $controller = new BookController();
+            $id = $params[1];
+            $controller->eliminar_libro($id);
+            break;
     case 'ver':
         $controller = new BookController();
         $id = $params[1];

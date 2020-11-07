@@ -17,9 +17,4 @@ class UserModel {
         $query->execute([$username]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
-
-    public function registerNewUser($username, $password){
-        $query = $this->db->prepare('INSERT INTO usuarios (username, pass) VALUES (?, ?)');
-        $query->execute([$username, $password]);
-    }
 }

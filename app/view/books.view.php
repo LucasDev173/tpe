@@ -33,15 +33,14 @@ class BooksView{
         $this->smarty->assign('mensaje', $mensaje);
         $this->smarty->display('templates/showError.tpl');
     }
-    
+
     function ShowItem($libro) {
         $this->smarty->assign('libro', $libro);
         $this->smarty->display('templates/bookDetail.tpl');
     }
 
-    function ShowItemModify($libro, $categorias) {
+    function ShowItemModify($libro) {
         $this->smarty->assign('libro', $libro);
-        $this->smarty->assign('categorias', $categorias);
         $this->smarty->display('templates/bookModify.tpl');
     }
 

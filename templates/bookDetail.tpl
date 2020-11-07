@@ -14,13 +14,6 @@
                         CATEGORIA: {$libro->nombre}
                     </li>
                 </ul>
-                {if ($libro->texto) && ($libro->puntos)}
-                    COMENTARIO: {$libro->texto} <br>
-                    PUNTAJE: {$libro->puntos}
-                {else} 
-                    COMENTARIO: 'Sin comentarios hasta el momento' <br>
-                    PUNTAJE:    'Sin puntaje hasta ahora'
-                {/if}
             </div>
         </div>
          <a class="btn btn-dark mt-5" href="{BASE_URL}home">Volver al catalogo</a>
