@@ -22,8 +22,9 @@ class BooksModel {
      */
     function getAll() {
 
-        // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con JOIN)
-        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria ON libro.id_categoria = categoria.ide');
+        // La consulta hace un JOIN de 'LIBRO' y 'CATEGORIA' y LEFT JOIN de 'COMENTARIO')
+        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria on libro.id_categoria = categoria.ide 
+                                     LEFT JOIN comentario ON libro.id = comentario.id_libro');
         $query->execute();
 
         // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
@@ -78,9 +79,10 @@ class BooksModel {
     function getLibro($id) {
         
         // 2. Envio consulta (2 pasos: prepare y execute. Consulto a las dos tablas para obtener categoria con INNER JOIN)
-        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria ON libro.id_categoria = categoria.ide WHERE id = ?');
+        $query = $this->db->prepare('SELECT * FROM libro JOIN categoria on libro.id_categoria = categoria.ide 
+                                     LEFT JOIN comentario ON libro.id = comentario.id_libro WHERE id = ?');
         $query->execute([$id]);
-        // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
+        // 3. Obtengo la respuesta con un fetch (porque es uno solo)
         $libro = $query->fetch(PDO::FETCH_OBJ); // El libro seleccionado
         return $libro;
     }
@@ -112,9 +114,9 @@ class BooksModel {
         $titulo = $libro["titulo"];
         $autor = $libro["autor"];
         $precio = $libro["precio"];
-        //$categoria = $libro["categoria"];
-        $query = $this->db->prepare('UPDATE libro JOIN categoria SET titulo = ?, autor = ?, precio = ? WHERE id = ?');
-        $query->execute([$titulo, $autor, $precio, $id]);
+        $categoria = $libro["categoria"];
+        $query = $this->db->prepare('UPDATE libro JOIN categoria SET titulo = ?, autor = ?, precio = ?, id_categoria = ? WHERE id = ?');
+        $query->execute([$titulo, $autor, $precio, $categoria, $id]);
         $libros = $this->getAll(); // arreglo de libros
         return $libros;
     } 

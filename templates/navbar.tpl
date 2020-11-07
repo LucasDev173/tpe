@@ -9,15 +9,20 @@
       <li class="nav-item">
         <a class="nav-link" href="home">Home</a>
       </li>
-      {if isset($smarty.session.ID_USER)}
+      {if isset($smarty.session.ID_USER) && $smarty.session.ADMIN_USER == 1}
         <li class="nav-item">
           <a class="nav-link" href="menuAdmin">Administar DB</a>
         </li>
       {/if}
     </ul>
     {if isset($smarty.session.ID_USER)}
+      
+      <span class="navbar-text mr-2">
+        Loggeado como {$smarty.session.NAME_USER}
+      </span>
       <a href="logout" class="btn btn-outline-light ml-2">Cerrar sesion</a>
     {else}
+      <a href="register" class="btn btn-light ml-2">Registrate</a>
       <a href="login" class="btn btn-outline-light ml-2">Iniciar sesion</a>
     {/if}
   </div>
