@@ -22,6 +22,7 @@
       </span>
       <a href="logout" class="btn btn-outline-light ml-2">Cerrar sesion</a>
     {else}
+      <a href="register" class="btn btn-light ml-2">Registrate</a>
       <a href="login" class="btn btn-outline-light ml-2">Iniciar sesion</a>
     {/if}
   </div>

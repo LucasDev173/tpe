@@ -29,6 +29,14 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showMenuAdmin();
         break;
+    case 'register':
+        $controller = new AuthController();
+        $controller->showRegister();
+        break;
+    case 'verifyRegis':
+        $controller = new AuthController();
+        $controller->verifyRegister();
+        break;
     case 'login':
         $controller = new AuthController();
         $controller->showLogin();

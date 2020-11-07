@@ -2,7 +2,7 @@
 {include 'templates/navbar.tpl'}
 {if $error}
   <div class="alert alert-danger text-center" role="alert">
-    ¡Error! Nombre de usuario en uso. Elija otro nombre.
+    {$error}
   </div>
 {/if}
 <div class="container text-center">

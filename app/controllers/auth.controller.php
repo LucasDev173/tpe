@@ -43,13 +43,35 @@ class AuthController {
         $this->view->showLogin();
     }
 
+    function showRegister(){
+        $this->view->showRegister();
+    }
+
+    function verifyRegister(){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $usernameCheck = $this->model->getByUsername($username);
+
+        if (empty($usernameCheck)){
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $this->model->registerNewUser($username, $password);
+            $user = $this->model->getByUsername($username);
+            $this->authHelper->login($user);
+            header("Location: " . BASE_URL . "home");
+        }
+        else{
+            $this->view->showRegister("¡Error! Su nombre ya se encuentra en uso. Elija otro nombre.");
+        }
+    }
+
     function loginUser(){
         $username = $_POST['username'];
         $password = $_POST['password'];
         
         $user = $this->model->getByUsername($username);
         
-        if ($user && password_verify($password, $user->password)) {
+        if ($user && password_verify($password, $user->pass)) {
             //se inicia la sesion
             $this->authHelper->login($user);
             if($user->admin == 1){
