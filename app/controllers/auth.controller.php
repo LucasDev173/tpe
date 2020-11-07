@@ -51,14 +51,15 @@ class AuthController {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        //usa el nombre dado por el usuario y lo busca en la base de datos
+        //si el usuario ya existe, detiene la operacion y da un error
         $usernameCheck = $this->model->getByUsername($username);
-
         if (empty($usernameCheck)){
+            //hashea la contraseña con bcrypt
             $password = password_hash($password, PASSWORD_DEFAULT);
             $this->model->registerNewUser($username, $password);
-            $user = $this->model->getByUsername($username);
-            $this->authHelper->login($user);
-            header("Location: " . BASE_URL . "home");
+            //loggea al usuario con el mismo post
+            $this->loginUser();
         }
         else{
             $this->view->showRegister("¡Error! Su nombre ya se encuentra en uso. Elija otro nombre.");
