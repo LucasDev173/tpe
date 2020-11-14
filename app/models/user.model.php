@@ -22,4 +22,11 @@ class UserModel {
         $query = $this->db->prepare('INSERT INTO usuarios (username, pass) VALUES (?, ?)');
         $query->execute([$username, $password]);
     }
+
+    public function getAll () {
+        $query = $this->db->prepare('SELECT * FROM usuarios');
+        $query->execute();
+        $usuarios = $query->fetchAll(PDO::FETCH_OBJ);
+        return $usuarios;
+    }
 }

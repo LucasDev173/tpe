@@ -79,4 +79,25 @@
     </ul>
 </div>
 
+{*Titulo del listado de usuarios*}
+<div class='container mb-3'>
+    <h3>Usuarios:</h3>
+</div>
+
+{*Comienzo del listado de usuarios*}
+<div id="contenedor_user" class='container mb-3'>
+    <ul class='list-group mt-2'>
+        {foreach from=$usuarios item=usuario}
+            <li class='list-group-item'>
+                {* ID: {$categoria->ide} <br> *}
+                NOMBRE: {$usuario->username} <br> 
+                NIVEL DE PERMISO: {if $usuario->admin == 1} Administrador {else} Usuario {/if}
+                {*TODO: el administrador debe poder quitar o dar permisos, y eliminar usuarios*}
+                {*<a class="btn btn-secondary" href="{BASE_URL}modificarCategoria/{$categoria->ide}">Modificar</a>*}
+                {*<a class="btn btn-danger" href="{BASE_URL}eliminarCategoria/{$categoria->ide}">Eliminar</a>*}
+            </li>
+        {/foreach}
+    </ul>
+</div>
+
 {include 'templates/footer.tpl'}
