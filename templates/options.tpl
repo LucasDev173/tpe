@@ -89,12 +89,14 @@
     <ul class='list-group mt-2'>
         {foreach from=$usuarios item=usuario}
             <li class='list-group-item'>
-                {* ID: {$categoria->ide} <br> *}
                 NOMBRE: {$usuario->username} <br> 
-                NIVEL DE PERMISO: {if $usuario->admin == 1} Administrador {else} Usuario {/if}
-                {*TODO: el administrador debe poder quitar o dar permisos, y eliminar usuarios*}
-                {*<a class="btn btn-secondary" href="{BASE_URL}modificarCategoria/{$categoria->ide}">Modificar</a>*}
-                {*<a class="btn btn-danger" href="{BASE_URL}eliminarCategoria/{$categoria->ide}">Eliminar</a>*}
+                NIVEL DE PERMISO: {if $usuario->isadmin == 1} Administrador {else} Usuario {/if} <br>
+                {*Por razones obvias, el administrador no puede eliminar su propio usuario o
+                quitarse su propios permisos*}
+                {if $usuario->username != $smarty.session.NAME_USER}
+                    <a class="btn btn-danger" href="{BASE_URL}eliminarUsuario/{$usuario->id}">Eliminar</a>
+                    <a class="btn btn-secondary" href="{BASE_URL}cambiarPermiso/{$usuario->id}">Dar o quitar permiso de admin</a>
+                {/if}
             </li>
         {/foreach}
     </ul>

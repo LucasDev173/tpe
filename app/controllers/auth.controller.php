@@ -79,7 +79,7 @@ class AuthController {
         if ($user && password_verify($password, $user->pass)) {
             //se inicia la sesion
             $this->authHelper->login($user);
-            if($user->admin == 1){
+            if($user->isadmin == 1){
                 header("Location: " . BASE_URL . "menuAdmin"); 
             }
             else{

@@ -8,7 +8,7 @@ class AuthHelper {
     }
     
     function checkAdmin(){
-        if ($_SESSION['ADMIN_USER'] == 0){
+        if ($_SESSION['ADMIN_USER'] == 0 || !isset($_SESSION['ID_USER'])){
             header("Location: " . BASE_URL . "home");
         }
     }
@@ -17,7 +17,7 @@ class AuthHelper {
         session_start();
         $_SESSION['ID_USER'] = $user->id;
         $_SESSION['NAME_USER'] = $user->username;
-        $_SESSION['ADMIN_USER'] = $user->admin; 
+        $_SESSION['ADMIN_USER'] = $user->isadmin; 
         //si ADMIN_USER == 0, el usuario no es un admin
         //si ADMIN_USER == 1, el usuario es un admin
     }

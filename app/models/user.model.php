@@ -12,6 +12,12 @@ class UserModel {
         return $db;
     }
 
+    public function getById($id){
+        $query = $this->db->prepare('SELECT * FROM usuarios WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function getByUsername($username) {
         $query = $this->db->prepare('SELECT * FROM usuarios WHERE username = ?');
         $query->execute([$username]);
@@ -28,5 +34,20 @@ class UserModel {
         $query->execute();
         $usuarios = $query->fetchAll(PDO::FETCH_OBJ);
         return $usuarios;
+    }
+
+    public function remove ($id){
+        $query = $this->db->prepare('DELETE FROM usuarios WHERE id = ?');
+        $results = $query->execute([$id]);
+    }
+
+    public function giveAdmin($id){
+        $query = $this->db->prepare('UPDATE usuarios SET isadmin = 1');
+        $results = $query->execute([$id]);
+    }
+
+    public function removeAdmin($id){
+        $query = $this->db->prepare('UPDATE usuarios SET isadmin = 0 WHERE id = ?');
+        $results = $query->execute([$id]);
     }
 }
