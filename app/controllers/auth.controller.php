@@ -5,6 +5,7 @@ include_once 'app/models/user.model.php';
 include_once 'app/view/books.view.php';
 include_once 'app/models/books.model.php';
 include_once 'app/models/category.model.php';
+include_once 'app/models/user.model.php';
 include_once 'app/helpers/auth.helper.php';
 
 class AuthController {
@@ -14,6 +15,7 @@ class AuthController {
     private $booksView;
     private $booksModel;
     private $categoryModel;
+    private $usarModel;
     private $authHelper;
     
     function __construct(){
@@ -25,13 +27,15 @@ class AuthController {
         $this->booksView = new BooksView();
         $this->booksModel = new BooksModel();
         $this->categoryModel = new CategoryModel();
+        $this->userModel = new UserModel();
         $this->authHelper = new AuthHelper();
     }
 
     function showMenuAdmin(){
         $libros = $this->booksModel->getAll();
         $categorias = $this->categoryModel->getAll();
-        $this->booksView->showMenuAdmin($libros, $categorias);
+        $usuarios = $this->userModel->getAll();
+        $this->booksView->showMenuAdmin($libros, $categorias, $usuarios);
     }
 
     function eliminar_libro($id) {
@@ -75,7 +79,7 @@ class AuthController {
         if ($user && password_verify($password, $user->pass)) {
             //se inicia la sesion
             $this->authHelper->login($user);
-            if($user->admin == 1){
+            if($user->isadmin == 1){
                 header("Location: " . BASE_URL . "menuAdmin"); 
             }
             else{

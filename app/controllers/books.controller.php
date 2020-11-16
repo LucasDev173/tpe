@@ -3,17 +3,20 @@ session_start();
 include_once 'app/view/books.view.php';
 include_once 'app/models/books.model.php';
 include_once 'app/models/category.model.php';
+include_once 'app/models/user.model.php';
 
 class BookController {
 
     private $view;
     private $model;
     private $modelcat;
+    private $usermodel;
 
     function __construct(){
         $this->view = new BooksView();
         $this->model = new BooksModel();
         $this->modelcat = new CategoryModel();
+        $this->usermodel = new usermodel();
     }
     
     function showHome(){
@@ -33,11 +36,12 @@ class BookController {
 
     // Inserta un libro con los datos enviados. SOLO ADMIN
     function insert_libro() {
+        $usuarios = $this->usermodel->getAll();
         $categorias = $this->modelcat->getAll();
         if ((empty($_POST["titulo"]) || empty($_POST["autor"]) || empty($_POST["precio"]) || empty($_POST["Sel_cat"]))) {
             $libros = $this->model->getAll();
             $message = "Faltan datos obligatorios.";
-            $this->view->showMenuAdmin($libros, $categorias, $message);
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
         else{
             $titulo = $_POST["titulo"];
@@ -50,7 +54,7 @@ class BookController {
             // redirigimos al listado
             $libros = $this->model->getAll();
             $message = "¡Libro insertado con exito!";
-            $this->view->showMenuAdmin($libros, $categorias, $message);
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
     }
 
@@ -58,15 +62,17 @@ class BookController {
     function filtrar_categoria($id_categoria) {
         $libros = $this->model->getCategoria($id_categoria);
         $categorias = $this->modelcat->getAll();
-        $this->view->showHome($libros, $categorias);
+        $usuarios = $this->usermodel->getAll();
+        $this->view->showHome($libros, $categorias, $usuarios);
     }
 
     //Elimino el libro con la ID seleccionada. SOLO ADMIN
     function eliminar_libro($id) {
         $libros = $this->model->remove($id);
         $categorias = $this->modelcat->getAll();
+        $usuarios = $this->usermodel->getAll();
         $message = "¡Libro eliminado con exito!";
-        $this->view->showMenuAdmin($libros, $categorias, $message);
+        $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
     }
 
     //Ver el detalle de un libro(item) en particular
@@ -87,9 +93,10 @@ class BookController {
         $libro = array("id"=>$_POST["id"], "titulo"=>$_POST["titulo"], "autor"=>$_POST["autor"], "precio"=>$_POST["precio"], 
                        "categoria"=>$_POST["Sel_cat"]);
         $libros = $this->model->updateLibro($libro);
+        $usuarios = $this->usermodel->getAll();
         $categorias = $this->modelcat->getAll();
         $message = "¡Libro modificado con exito!";
-        $this->view->showMenuAdmin($libros, $categorias, $message);
+        $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
     }
 
     function modifCategoria($id){
@@ -103,20 +110,21 @@ class BookController {
 
         $libros = $this->model->getAll();
         $categorias = $this->modelcat->getAll();
+        $usuarios = $this->usermodel->getAll();
         $message = "¡Categoria modificado con exito!";
-        $this->view->showMenuAdmin($libros, $categorias, $message);
+        $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
     }
 
     // Inserta un libro con los datos enviados. SOLO ADMIN
     function insertar_categoria() {
         $libros = $this->model->getAll();
-
+        $usuarios = $this->usermodel->getAll();
         //revisa que la el post no este vacio (el que este vacio solo seria posible si el usuario abriera
         //la url insertar_categoria fuera de la forma)
         if (empty($_POST["categoria"])) {
             $message = "Faltan datos obligatorios.";
             $categorias = $this->modelcat->getAll();
-            $this->view->showMenuAdmin($libros, $categorias, $message);
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
         else {
             $categoria = $_POST["categoria"];
@@ -127,7 +135,7 @@ class BookController {
             // redirigimos al listado
             $categorias = $this->modelcat->getAll();
             $message = "¡Categoria insertada con exito!";
-            $this->view->showMenuAdmin($libros, $categorias, $message);
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
     }
 
@@ -136,14 +144,50 @@ class BookController {
         $result = $this->modelcat->removeCategory($id);
         $libros = $this->model->getAll();
         $categorias = $this->modelcat->getAll();
+        $usuarios = $this->usermodel->getAll();
 
         if ($result){
             $message = "¡Categoria eliminada con exito!";
-            $this->view->showMenuAdmin($libros, $categorias, $message);
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
         else {
             $message = "No se puede eliminar una categoria en uso.";
-            $this->view->showMenuAdmin($libros, $categorias, $message);
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
+        }
+    }
+
+    function EliminarUsuario($id){
+        $libros = $this->model->getAll();
+        $categorias = $this->modelcat->getAll();
+        $usuarios = $this->usermodel->getAll();
+        $user = $this->usermodel->getById($id);
+
+        if ($user->isadmin == 0){
+            $this->usermodel->remove($id);
+            $message = "¡Usuario eliminado con exito!";
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
+        }
+        else {
+            $message = "¡Error! No se puede eliminar a un administrador.";
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
+        }
+    }
+    function cambiarPermisos($id){
+        $libros = $this->model->getAll();
+        $categorias = $this->modelcat->getAll();
+        $user = $this->usermodel->getById($id);
+
+        if ($user->isadmin == 0){
+            $this->usermodel->giveAdmin($id);
+            $usuarios = $this->usermodel->getAll();
+            $message = "¡Usuario convertido en admininistrador!";
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
+        }
+        else if ($user->isadmin == 1) {
+            $this->usermodel->removeAdmin($id);
+            $usuarios = $this->usermodel->getAll();
+            $message = "Los permisos de administrador del usuario fueron removidos con exito.";
+            $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
     }
 }  

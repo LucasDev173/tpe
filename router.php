@@ -62,6 +62,8 @@ switch ($params[0]) {
         $controller->showSearch();
         break;
     case 'eliminar':
+        $helper = new AuthHelper();
+        $helper->checkAdmin();
         $controller = new BookController();
         $id = $params[1];
         $controller->eliminar_libro($id);
@@ -81,22 +83,44 @@ switch ($params[0]) {
         $controller->modif_final();
         break;
     case 'insertar_categoria':
+        $helper = new AuthHelper();
+        $helper->checkAdmin();
         $controller = new BookController();
         $controller->insertar_categoria();
         break;
     case 'modificarCategoria':
+        $helper = new AuthHelper();
+        $helper->checkAdmin();
         $controller = new BookController();
         $id = $params[1];
         $controller->modifCategoria($id);
         break;
     case 'categoryModif':
+        $helper = new AuthHelper();
+        $helper->checkAdmin();
         $controller = new BookController();
         $controller->categoryModifFinal();
         break;
     case 'eliminarCategoria':
+        $helper = new AuthHelper();
+        $helper->checkAdmin();
         $controller = new BookController();
         $id = $params[1];
         $controller->EliminarCategoria($id);
+        break;
+    case 'eliminarUsuario':
+        $helper = new AuthHelper();
+        $helper->checkAdmin();
+        $controller = new BookController();
+        $id = $params[1];
+        $controller->EliminarUsuario($id);
+        break;
+    case 'cambiarPermiso':
+        $helper = new AuthHelper();
+        $helper->checkAdmin();
+        $controller = new BookController();
+        $id = $params[1];
+        $controller->cambiarPermisos($id);
         break;
     default:
         header("HTTP/1.0 404 Not Found");

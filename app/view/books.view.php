@@ -17,10 +17,11 @@ class BooksView{
         $this->smarty->display('templates/booksList.tpl');
     }
 
-    function showMenuAdmin($libros, $categorias, $message = null){
+    function showMenuAdmin($libros, $categorias, $usuarios, $message = null){
         $this->smarty->assign('message', $message);
         $this->smarty->assign('libros', $libros);
         $this->smarty->assign('categorias', $categorias);
+        $this->smarty->assign('usuarios', $usuarios);
         $this->smarty->display('templates/options.tpl');
     }
 

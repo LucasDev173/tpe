@@ -79,4 +79,27 @@
     </ul>
 </div>
 
+{*Titulo del listado de usuarios*}
+<div class='container mb-3'>
+    <h3>Usuarios:</h3>
+</div>
+
+{*Comienzo del listado de usuarios*}
+<div id="contenedor_user" class='container mb-3'>
+    <ul class='list-group mt-2'>
+        {foreach from=$usuarios item=usuario}
+            <li class='list-group-item'>
+                NOMBRE: {$usuario->username} <br> 
+                NIVEL DE PERMISO: {if $usuario->isadmin == 1} Administrador {else} Usuario {/if} <br>
+                {*Por razones obvias, el administrador no puede eliminar su propio usuario o
+                quitarse su propios permisos*}
+                {if $usuario->username != $smarty.session.NAME_USER}
+                    <a class="btn btn-danger" href="{BASE_URL}eliminarUsuario/{$usuario->id}">Eliminar</a>
+                    <a class="btn btn-secondary" href="{BASE_URL}cambiarPermiso/{$usuario->id}">Dar o quitar permiso de admin</a>
+                {/if}
+            </li>
+        {/foreach}
+    </ul>
+</div>
+
 {include 'templates/footer.tpl'}
