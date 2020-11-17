@@ -15,7 +15,7 @@ class AuthController {
     private $booksView;
     private $booksModel;
     private $categoryModel;
-    private $usarModel;
+    private $userModel;
     private $authHelper;
     
     function __construct(){

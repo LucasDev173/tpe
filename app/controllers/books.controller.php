@@ -159,16 +159,17 @@ class BookController {
     function EliminarUsuario($id){
         $libros = $this->model->getAll();
         $categorias = $this->modelcat->getAll();
-        $usuarios = $this->usermodel->getAll();
         $user = $this->usermodel->getById($id);
 
         if ($user->isadmin == 0){
             $this->usermodel->remove($id);
             $message = "¡Usuario eliminado con exito!";
+            $usuarios = $this->usermodel->getAll();
             $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
         else {
             $message = "¡Error! No se puede eliminar a un administrador.";
+            $usuarios = $this->usermodel->getAll();
             $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
     }

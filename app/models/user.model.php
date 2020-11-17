@@ -42,7 +42,7 @@ class UserModel {
     }
 
     public function giveAdmin($id){
-        $query = $this->db->prepare('UPDATE usuarios SET isadmin = 1');
+        $query = $this->db->prepare('UPDATE usuarios SET isadmin = 1 WHERE id = ?');
         $results = $query->execute([$id]);
     }
 
