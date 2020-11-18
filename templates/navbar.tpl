@@ -9,6 +9,12 @@
       <li class="nav-item">
         <a class="nav-link" href="home">Home</a>
       </li>
+      {if isset($smarty.session.ID_USER)}
+        <li class="nav-item">
+          <a class="nav-link" href="busquedaAdv">Busqueda avanzada</a>
+        </li>
+      {/if}
+      
       {if isset($smarty.session.ID_USER) && $smarty.session.ADMIN_USER == 1}
         <li class="nav-item">
           <a class="nav-link" href="menuAdmin">Administar DB</a>

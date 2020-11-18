@@ -27,6 +27,12 @@ class BookController {
         $this->view->showHome($libros, $categorias);
     }
 
+    //muestar la busqueda avanzada
+    function showAdvancedSearch(){
+        $categorias = $this->modelcat->getAll();
+        $this->view->showAdvancedSearch($categorias);
+    }
+
     //Muestra los resultados de la barra de busqueda
     function showSearch(){
         $pattern = $_POST["pattern"];
@@ -60,10 +66,8 @@ class BookController {
 
     // Filtro la categoria seleccionada
     function filtrar_categoria($id_categoria) {
-        $libros = $this->model->getCategoria($id_categoria);
-        $categorias = $this->modelcat->getAll();
-        $usuarios = $this->usermodel->getAll();
-        $this->view->showHome($libros, $categorias, $usuarios);
+        $results = $this->model->getCategoria($id_categoria);
+        $this->view->showResults($results);
     }
 
     //Elimino el libro con la ID seleccionada. SOLO ADMIN

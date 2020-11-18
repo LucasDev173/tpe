@@ -38,16 +38,16 @@ class UserModel {
 
     public function remove ($id){
         $query = $this->db->prepare('DELETE FROM usuarios WHERE id = ?');
-        $results = $query->execute([$id]);
+        $query->execute([$id]);
     }
 
     public function giveAdmin($id){
         $query = $this->db->prepare('UPDATE usuarios SET isadmin = 1 WHERE id = ?');
-        $results = $query->execute([$id]);
+        $query->execute([$id]);
     }
 
     public function removeAdmin($id){
         $query = $this->db->prepare('UPDATE usuarios SET isadmin = 0 WHERE id = ?');
-        $results = $query->execute([$id]);
+        $query->execute([$id]);
     }
 }

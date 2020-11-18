@@ -2,7 +2,6 @@
 {include 'templates/navbar.tpl'}
 {if !$results}
     <p class="lead m-5">No se encontro ningun resultado.</p>
-    {include 'templates/footer.tpl'}
 {else}
     <div class='container mb-3'>
     <ul class='list-group mt-5'>
@@ -13,7 +12,7 @@
             </li>
     {/foreach}
     </ul>
-    <a href="{BASE_URL}home#contenedor">volver</a>
+        <a href="{BASE_URL}busquedaAdv">Volver</a>
     </div>
 {/if}
 {include 'templates/footer.tpl'}

@@ -17,6 +17,11 @@ class BooksView{
         $this->smarty->display('templates/booksList.tpl');
     }
 
+    function showAdvancedSearch($categorias){
+        $this->smarty->assign('categorias', $categorias);
+        $this->smarty->display('templates/advancedSearch.tpl');
+    }
+
     function showMenuAdmin($libros, $categorias, $usuarios, $message = null){
         $this->smarty->assign('message', $message);
         $this->smarty->assign('libros', $libros);
