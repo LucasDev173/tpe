@@ -39,4 +39,10 @@ class CommentaryModel {
         $resultado = $query->execute(array($id));
         return $resultado;
     }
+
+    public function InsertarComentario($id_libro, $texto, $puntos) {
+        $query = $this->db->prepare('INSERT INTO comentario (`id_libro`, `texto`, `puntos`) 
+                                     VALUES (?,?,?)');
+        $query->execute($id_libro, $texto, $puntos);
+    }
 }

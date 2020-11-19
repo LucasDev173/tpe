@@ -1,6 +1,6 @@
 {include 'templates/header.tpl'}
 {include 'templates/navbar.tpl'}
-    <div class='container mb-3'>
+    <div id="llevaid" class='container mb-3' data-idlibro="{$libro->id}">
         <div class="row">
             <div class="col-4">
                 <img class='mt-5 rounded mx-auto d-block img-thumbnail' src="img/portada-generica.png" width="300" height="150">
@@ -14,15 +14,9 @@
                         CATEGORIA: {$libro->nombre}
                     </li>
                 </ul>
-                {if ($libro->texto) && ($libro->puntos)}
-                    COMENTARIO: {$libro->texto} <br>
-                    PUNTAJE: {$libro->puntos}
-                {else} 
-                    COMENTARIO: 'Sin comentarios hasta el momento' <br>
-                    PUNTAJE:    'Sin puntaje hasta ahora'
-                {/if}
+                {include file="vue/ListaComentarios.vue"}
             </div>
         </div>
-         <a class="btn btn-dark mt-5" href="{BASE_URL}home">Volver al catalogo</a>
     </div>
 {include 'templates/footer.tpl'}
+<script type="text/javascript" src="JS/commentary.js"></script>

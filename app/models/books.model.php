@@ -87,6 +87,15 @@ class BooksModel {
         return $libro;
     }
 
+    function ExisteLibro($id) {
+        $query = $this->db->prepare('SELECT * FROM libro WHERE id = ?');
+        $existe = $query->execute([$id]);
+        if ($existe)
+            return true;
+        else  
+            return false;
+    }   
+
     /*
      * Busca en libros x `id`, `titulo`, `autor`, `precio`, `id_categoria` 
      * convierte a los resultados en minuscula para comparar en la base de datos

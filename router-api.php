@@ -12,6 +12,7 @@ $router->addRoute('Libro/:ID', 'GET', 'ApiLibroController', 'obtenerLibro');
 $router->addRoute('Comentario', 'GET', 'ApiLibroController', 'obtenerComentarios');
 $router->addRoute('Comentario/:ID', 'DELETE', 'ApiLibroController', 'BorrarComentario');
 $router->addRoute('Comentario/:ID', 'GET', 'ApiLibroController', 'obtenerComentario');
+$router->addRoute('Comentario/:ID', 'POST', 'ApiLibroController', 'InsertarComentario');
 
 
 // rutea

@@ -1,61 +1,59 @@
 "use strict"
 
-const app = new Vue({
+let app = new Vue({
     el: "#app",
     data: {
-        libros: [], 
+        comentarios: [],
     }, 
 });
 
 document.addEventListener('DOMContentLoaded', e => {
-    getLibros();
-
-    
-
+    let ID = window.location.pathname.substr(window.location.pathname.lastIndexOf("/")+1);
+    getComentarios(ID);
 });
 
-async function getLibros() {
+
+async function getComentarios(LibroID) {
     try {
-        const response = await fetch('api/Libro');
-        const Libros = await response.json();
-        
+        const response = await fetch('api/Comentario/'+LibroID);
+        const comentarios = await response.json();
+    
+
         // imprimo por pantalla
-        app.libros = Libros;
-        let formularios = document.querySelectorAll('.addCommentary')
-        formularios.forEach(formulario => {
-            formulario.addEventListener('submit', e => {
-                e.preventDefault();
-                    addComentario();
-            });    
-        });
-        
-    } catch(e) {
+        if (comentarios ) {
+            console.log(comentarios);
+            app.comentarios = comentarios;
+        }
+        document.querySelector('#addCommentary').addEventListener('submit', e => {
+            e.preventDefault();
+            addComentario(LibroID);
+        });    
+    }
+    catch(e) {
         console.log(e);
     }
+    
 }
 
+async function addComentario(LibroID) {
 
-async function addComentario() {
-
-    // armo el comentario TENGO QUE TOMAR ID USUARIO DE ALGUN LADO (DATA-SET??)
+    // armo el comentario
     const Comen = {
         texto: document.querySelector('input[name=texto]').value,
         puntaje: document.querySelector('select[name=puntaje]').value,
     }
 
     try {
-        const response = await fetch('api/Comentario' , {
+        const response = await fetch('api/Comentario/'+LibroID, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'}, 
             body: JSON.stringify(Comen)
         });
 
         const t = await response.json();
-        app.libros.push(t);
+        app.comentarios.push(t);
 
     } catch(e) {
         console.log(e);
     }
- 
 }
-

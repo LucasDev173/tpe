@@ -46,6 +46,7 @@ class ApiLibroController {
         $this->view->response($comentarios, 200);
     }
 
+    //Obtiene el comentario con ID Libro. Si existe libro pero no comentario respose 200
     public function obtenerComentario($params = null) {
         $id_libro = $params[':ID'];
         $comentario = $this->c_model->obtenerComentario($id_libro);
@@ -53,7 +54,12 @@ class ApiLibroController {
             $this->view->response($comentario, 200);
         }
         else {
-            $this->view->response($comentario, 404);
+            if ($this->model->ExisteLibro($id_libro)) {
+                $arr = array ("texto"=>"No hay comentarios","puntos"=>0);
+                $this->view->response($arr, 200);
+            }
+            else
+                $this->view->response($comentario, 404);
         }
     }
 
@@ -61,6 +67,18 @@ class ApiLibroController {
     public function BorrarComentario($params = null) {
         $idComentario = $params[':ID'];
         $resultado = $this->c_model->BorrarComentario($idComentario);
+        if ($resultado) {
+            $this->view->response($resultado, 200);
+        }
+        else { 
+            $this->view->response($resultado, 404);
+        }
+    }
+
+    public function InsertarComentario($params = null) {
+        var_dump($params); die;
+        $idLibro = $params[':ID'];
+        $resultado = $this->c_model->InsertarComentario($idLibro);
         if ($resultado) {
             $this->view->response($resultado, 200);
         }
