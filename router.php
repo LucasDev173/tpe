@@ -29,6 +29,12 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showMenuAdmin();
         break;
+    case 'busquedaAdv':
+        $helper = new AuthHelper();
+        $helper->checkLogged();
+        $controller = new BookController();
+        $controller->showAdvancedSearch();
+    break;
     case 'register':
         $controller = new AuthController();
         $controller->showRegister();

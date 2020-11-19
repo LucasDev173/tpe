@@ -27,6 +27,12 @@ class BookController {
         $this->view->showHome($libros, $categorias);
     }
 
+    //muestar la busqueda avanzada
+    function showAdvancedSearch(){
+        $categorias = $this->modelcat->getAll();
+        $this->view->showAdvancedSearch($categorias);
+    }
+
     //Muestra los resultados de la barra de busqueda
     function showSearch(){
         $pattern = $_POST["pattern"];
@@ -60,10 +66,8 @@ class BookController {
 
     // Filtro la categoria seleccionada
     function filtrar_categoria($id_categoria) {
-        $libros = $this->model->getCategoria($id_categoria);
-        $categorias = $this->modelcat->getAll();
-        $usuarios = $this->usermodel->getAll();
-        $this->view->showHome($libros, $categorias, $usuarios);
+        $results = $this->model->getCategoria($id_categoria);
+        $this->view->showResults($results);
     }
 
     //Elimino el libro con la ID seleccionada. SOLO ADMIN
@@ -159,16 +163,17 @@ class BookController {
     function EliminarUsuario($id){
         $libros = $this->model->getAll();
         $categorias = $this->modelcat->getAll();
-        $usuarios = $this->usermodel->getAll();
         $user = $this->usermodel->getById($id);
 
         if ($user->isadmin == 0){
             $this->usermodel->remove($id);
             $message = "¡Usuario eliminado con exito!";
+            $usuarios = $this->usermodel->getAll();
             $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
         else {
             $message = "¡Error! No se puede eliminar a un administrador.";
+            $usuarios = $this->usermodel->getAll();
             $this->view->showMenuAdmin($libros, $categorias, $usuarios, $message);
         }
     }
