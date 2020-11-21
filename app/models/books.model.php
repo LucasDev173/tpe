@@ -87,7 +87,7 @@ class BooksModel {
         return $libro;
     }
 
-    function ExisteLibro($id) {
+    public function ExisteLibro($id) {
         $query = $this->db->prepare('SELECT * FROM libro WHERE id = ?');
         $existe = $query->execute([$id]);
         if ($existe)

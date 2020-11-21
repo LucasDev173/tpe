@@ -5,7 +5,7 @@
         <li v-for="comentario in comentarios" class="list-group-item">
             {{comentario.texto}} - {{comentario.puntos}}
         </li>
-        <form id="addCommentary" action="api/InsertarComentario" method="POST">
+        <form id="addCommentary" action="InsertarComentario" method="POST">
                 <input type="text" name="texto" placeholder="Insertar comentario">
                 <select name="puntaje">
                     <option value=1>1</option>

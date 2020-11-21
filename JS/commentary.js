@@ -12,18 +12,18 @@ document.addEventListener('DOMContentLoaded', e => {
     getComentarios(ID);
 });
 
-
 async function getComentarios(LibroID) {
     try {
         const response = await fetch('api/Comentario/'+LibroID);
         const comentarios = await response.json();
-    
-
+        
         // imprimo por pantalla
-        if (comentarios ) {
-            console.log(comentarios);
+        if (comentarios instanceof Array) {
             app.comentarios = comentarios;
         }
+        else {
+            app.comentarios.push(comentarios);
+        } 
         document.querySelector('#addCommentary').addEventListener('submit', e => {
             e.preventDefault();
             addComentario(LibroID);
@@ -39,19 +39,21 @@ async function addComentario(LibroID) {
 
     // armo el comentario
     const Comen = {
-        texto: document.querySelector('input[name=texto]').value,
-        puntaje: document.querySelector('select[name=puntaje]').value,
+        id      : LibroID,
+        texto   : document.querySelector('input[name=texto]').value,
+        puntaje : document.querySelector('select[name=puntaje]').value,
     }
 
     try {
         const response = await fetch('api/Comentario/'+LibroID, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'}, 
-            body: JSON.stringify(Comen)
+            method  : 'POST',
+            headers : {'Content-Type': 'application/json'}, 
+            body    : JSON.stringify(Comen)
         });
-
+        
         const t = await response.json();
         app.comentarios.push(t);
+        window.location.reload();
 
     } catch(e) {
         console.log(e);

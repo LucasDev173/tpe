@@ -17,6 +17,11 @@ class ApiLibroController {
         $this->data = file_get_contents("php://input");
     }
 
+    // Lee la variable asociada a la entrada estandar y la convierte en JSON
+    public function getData(){ 
+        return json_decode($this->data); 
+    } 
+
     public function ObtenerLibros($params = null) {
         $parametros = [];
 
@@ -55,11 +60,12 @@ class ApiLibroController {
         }
         else {
             if ($this->model->ExisteLibro($id_libro)) {
-                $arr = array ("texto"=>"No hay comentarios","puntos"=>0);
+                $arr = array ("texto"=>"El libro no tiene comentarios","puntos"=>0);
                 $this->view->response($arr, 200);
             }
-            else
-                $this->view->response($comentario, 404);
+            else {
+                $arr = array ("texto"=>"El libro no existe","puntos"=>0);
+                $this->view->response($arr, 404);}
         }
     }
 
@@ -76,14 +82,20 @@ class ApiLibroController {
     }
 
     public function InsertarComentario($params = null) {
-        var_dump($params); die;
-        $idLibro = $params[':ID'];
-        $resultado = $this->c_model->InsertarComentario($idLibro);
-        if ($resultado) {
-            $this->view->response($resultado, 200);
+
+        $body = $this->getData();
+        
+        $ID     = $body->id;
+        $texto  = $body->texto;
+        $puntos = $body->puntaje;
+
+        $id = $this->c_model->InsertarComentario($ID, $texto, $puntos);
+        if ($id > 0) {
+            $comen = $this->c_model->obtenerComentario($id);
+            $this->view->response($comen, 200);
         }
         else { 
-            $this->view->response($resultado, 404);
+            $this->view->response("No pudo insertarse el comentario", 404);
         }
     }
 }
