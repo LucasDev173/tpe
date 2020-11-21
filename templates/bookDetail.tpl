@@ -14,9 +14,12 @@
                         CATEGORIA: {$libro->nombre}
                     </li>
                 </ul>
-                {include file="vue/ListaComentarios.vue"}
+                {if isset($smarty.session.ID_USER)}
+                    {include file="vue/ListaComentarios.vue"}
+                {/if}
             </div>
         </div>
+        <a class="btn btn-dark mt-5" href='{BASE_URL}home'>Volver al catalogo</a>
     </div>
 {include 'templates/footer.tpl'}
 <script type="text/javascript" src="JS/commentary.js"></script>

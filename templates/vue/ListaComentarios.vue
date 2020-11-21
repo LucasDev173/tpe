@@ -17,5 +17,5 @@
         <button class="btn btn-success btn-sm" type="submit">Insertar Comentario</button>
     </ul>
 </section>
-<a class="btn btn-dark mt-5" href='{/literal}{BASE_URL}{literal}home'>Volver al catalogo</a>
+<!-- a class="btn btn-dark mt-5" href='{/literal}{BASE_URL}{literal}home'>Volver al catalogo</a-->
 {/literal}
