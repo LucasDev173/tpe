@@ -5,6 +5,11 @@ let app = new Vue({
     data: {
         comentarios: [],
     }, 
+    methods: {
+        Eliminar: function (idcomentario) {
+            delComentario(idcomentario)
+        }
+    }
 });
 
 document.addEventListener('DOMContentLoaded', e => {
@@ -27,7 +32,7 @@ async function getComentarios(LibroID) {
         document.querySelector('#addCommentary').addEventListener('submit', e => {
             e.preventDefault();
             addComentario(LibroID);
-        });    
+        });
     }
     catch(e) {
         console.log(e);
@@ -50,11 +55,26 @@ async function addComentario(LibroID) {
             headers : {'Content-Type': 'application/json'}, 
             body    : JSON.stringify(Comen)
         });
-        
+        location.reload();
+
         const t = await response.json();
         app.comentarios.push(t);
-        window.location.reload();
+        
 
+
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+async function delComentario(idcomentario) {
+    
+    try {
+        const response = await fetch('api/Comentario/'+idcomentario, {
+            method  : 'DELETE',
+            headers : {'Content-Type': 'application/json'}, 
+        });
+        location.reload();
     } catch(e) {
         console.log(e);
     }

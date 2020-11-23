@@ -1,6 +1,6 @@
 {include 'templates/header.tpl'}
 {include 'templates/navbar.tpl'}
-    <div id="llevaid" class='container mb-3' data-idlibro="{$libro->id}">
+    <div id="llevaid" class='container mb-3'">
         <div class="row">
             <div class="col-4">
                 <img class='mt-5 rounded mx-auto d-block img-thumbnail' src="img/portada-generica.png" width="300" height="150">
@@ -14,8 +14,10 @@
                         CATEGORIA: {$libro->nombre}
                     </li>
                 </ul>
-                {if isset($smarty.session.ID_USER)}
-                    {include file="vue/ListaComentarios.vue"}
+                {if (isset($smarty.session.ID_USER) && ($smarty.session.ADMIN_USER == 0))}
+                    {include file="vue/ListaComentariosLoged.vue"}
+                {elseif (isset($smarty.session.ID_USER) && ($smarty.session.ADMIN_USER == 1))}
+                    {include file="vue/ListaComentariosAdmin.vue"}
                 {/if}
             </div>
         </div>

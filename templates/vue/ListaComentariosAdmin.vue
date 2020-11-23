@@ -4,6 +4,8 @@
         Comentarios - Puntaje
         <li v-for="comentario in comentarios" class="list-group-item">
             {{comentario.texto}} - {{comentario.puntos}}
+            
+            <button v-on:click="Eliminar(comentario.idc)" class="btn btn-outline-danger btn-sm">Eliminar comentario</button>
         </li>
         <form id="addCommentary" action="InsertarComentario" method="POST">
                 <input type="text" name="texto" placeholder="Insertar comentario">
@@ -17,5 +19,4 @@
         <button class="btn btn-success btn-sm" type="submit">Insertar Comentario</button>
     </ul>
 </section>
-<!-- a class="btn btn-dark mt-5" href='{/literal}{BASE_URL}{literal}home'>Volver al catalogo</a-->
 {/literal}
