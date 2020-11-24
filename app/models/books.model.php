@@ -19,12 +19,13 @@ class BooksModel {
 
     /**
      * Devuelve todos los libros de la base de datos.
+     * La comentarios se recuperan desde la API/Comentario
      */
     function getAll() {
 
         // La consulta hace un JOIN de 'LIBRO' y 'CATEGORIA' y LEFT JOIN de 'COMENTARIO')
         $query = $this->db->prepare('SELECT * FROM libro JOIN categoria on libro.id_categoria = categoria.ide 
-                                     LEFT JOIN comentario ON libro.id = comentario.id_libro');
+                                     /* LEFT JOIN comentario ON libro.id = comentario.id_libro */');
         $query->execute();
 
         // 3. Obtengo la respuesta con un fetchAll (porque son muchos)
