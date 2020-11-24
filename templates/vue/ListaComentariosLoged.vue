@@ -6,7 +6,7 @@
             {{comentario.texto}} - {{comentario.puntos}}
         </li>
         <form id="addCommentary" action="InsertarComentario" method="POST">
-                <input type="text" name="texto" placeholder="Insertar comentario">
+                <input type="text" name="texto" placeholder="Insertar comentario" class="mt-4">
                 <select name="puntaje">
                     <option value=1>1</option>
                     <option value=2>2</option>

@@ -64,6 +64,8 @@ switch ($params[0]) {
         $controller->filtrar_categoria($_POST["Sel_cat"]);
         break;
     case 'buscar':
+        $helper = new AuthHelper();
+        $helper->checkLogged();
         $controller = new BookController();
         $controller->showSearch();
         break;

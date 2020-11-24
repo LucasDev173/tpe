@@ -12,10 +12,10 @@
                 TITULO: {$libro->titulo} <br> 
                 {*AUTOR: {$libro->autor} <br>*} 
                 {*AUTOR: {$libro->autor} <br>*}
-                PRECIO: {$libro->precio} {*<br>*} 
+                PRECIO: <span class="badge badge-primary badge-pill">${$libro->precio}</span> {*<br>*} 
                 {*CATEGORIA: {$libro->nombre}*}
                 <div>
-                    <a class='btn btn-success btn-sm' href="ver/{$libro->id}">DETALLE</a>
+                    <a class='btn btn-success btn-sm mt-2' href="ver/{$libro->id}">DETALLE</a>
                 </div>
             </li>
         {/foreach}
