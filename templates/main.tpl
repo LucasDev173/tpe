@@ -8,6 +8,10 @@
       de su excelente calidad, atencion al cliente y ofertas.</p>
       <p class="lead">Contando con una impresionante variedad de generos, nuestro catalogo
       ofrece lo mejor para el lector contemporaneo.</p>
+      {if !isset($smarty.session.ID_USER)}
+        <p class="lead">¡Registrate para poder dejar y ver comentarios, ademas de poder hacer 
+        busquedas avanzadas!</p>
+      {/if}
     </div>
     <div class="mt-4 col-3 d-none d-lg-block">
       <img src="img/rsz_bookart.png" alt="logo" class="img-fluid">

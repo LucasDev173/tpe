@@ -35,7 +35,7 @@ class BookController {
 
     //Muestra los resultados de la barra de busqueda
     function showSearch(){
-        $pattern = $_POST["pattern"];
+        $pattern = $_GET["pattern"];
         $results = $this->model->getResults($pattern); 
         $this->view->showResults($results);
     }

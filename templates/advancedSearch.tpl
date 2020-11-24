@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-4">
-                <form class="form-inline my-2 my-lg-0" action="buscar" method="POST">
+                <form class="form-inline my-2 my-lg-0" action="buscar" method="GET">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search" 
                 name="pattern" required>
                 <button class="btn btn-dark my-2 my-sm-0" type="submit">🔍</button>
