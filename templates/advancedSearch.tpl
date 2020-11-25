@@ -1,6 +1,6 @@
 {include 'templates/header.tpl'}
 {include 'templates/navbar.tpl'}
-    <div class="container">
+    <div class="container mr-5 mt-5">
         <div class="row mt-3">
             <div class="col-4">
                 <form class="form-inline my-2 my-lg-0" action="buscar" method="GET">

@@ -1,7 +1,9 @@
 {include 'templates/header.tpl'}
 {include 'templates/navbar.tpl'}
 {if !$results}
+<div class='container'>
     <p class="lead m-5">No se encontro ningun resultado.</p>
+</div>
 {else}
     <div class='container mb-3'>
     <ul class='list-group mt-5'>
@@ -12,7 +14,10 @@
             </li>
     {/foreach}
     </ul>
-        <a class="btn btn-dark mt-3" href="{BASE_URL}busquedaAdv">Volver</a>
     </div>
 {/if}
+<div class='container'>
+    <a class="btn btn-dark" href="{BASE_URL}busquedaAdv">Volver</a>
+</div>
+
 {include 'templates/footer.tpl'}

@@ -11,6 +11,10 @@ class BooksView{
         $this->smarty->assign('title', "Libreria");
     }
 
+    function showNotFound(){
+        $this->smarty->display('templates/showError.tpl');
+    }
+
     function showHome($libros, $categorias){
         $this->smarty->assign('libros', $libros);
         $this->smarty->assign('categorias', $categorias);

@@ -19,6 +19,10 @@ class BookController {
         $this->usermodel = new usermodel();
     }
     
+    function showNotFound(){
+        $this->view->showNotFound();
+    }
+
     function showHome(){
         //Tomo todos los libros de la DB
         $libros = $this->model->getAll();
